@@ -37,8 +37,10 @@
     </dependencies>
     <modules>
         <module>parent-boot</module>
+        <module>parent-cloud</module>
         <module>spring-boot-module</module>
         <module>parent-cloud</module>
+        <module>spring-cloud</module>
     </modules>
 
 </project>
