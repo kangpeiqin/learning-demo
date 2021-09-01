@@ -38,6 +38,7 @@
     <modules>
         <module>parent-boot</module>
         <module>spring-boot-module</module>
+        <module>parent-cloud</module>
     </modules>
 
 </project>
