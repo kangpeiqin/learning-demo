@@ -5,6 +5,7 @@
     <artifactId>spring-boot-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-module</name>
+    <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -15,7 +16,7 @@
     </parent>
 
     <modules>
-        <module>websocket</module>
+        <module>oauth2ClientDemo</module>
     </modules>
 
     <dependencyManagement>
