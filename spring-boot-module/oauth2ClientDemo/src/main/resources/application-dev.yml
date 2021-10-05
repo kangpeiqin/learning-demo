@@ -1,9 +1,13 @@
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-#    username: root
-#    password: 11love11
+security:
+  oauth2:
+    client:
+      client-id: test
+      client-secret: test
+      user-authorization-uri: http://127.0.0.1:8080/oauth/authorize
+      access-token-uri: http://127.0.0.1:8080/oauth/token
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:8080/oauth/token_key
 
-logging:
-  level: debug
+server:
+  port: 8081

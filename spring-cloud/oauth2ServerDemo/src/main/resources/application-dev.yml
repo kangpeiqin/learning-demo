@@ -1,15 +1,12 @@
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-#    username: root
-#    password: 11love11
+server:
+  port: 8080
+
 security:
   oauth2:
     client:
       client-id: test
       client-secret: test
-      registered-redirect-uri: http://mrbird.cc
+      registered-redirect-uri: http://localhost:8081
 
 
 
