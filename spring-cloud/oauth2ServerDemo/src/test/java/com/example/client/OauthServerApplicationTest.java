@@ -1,11 +1,11 @@
-package com.example.oauthServer;
+package com.example.client;
 
 import org.junit.Test;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WebsocketApplicationTests {
+class OauthServerApplicationTest {
 
     @Test
     void contextLoads() {

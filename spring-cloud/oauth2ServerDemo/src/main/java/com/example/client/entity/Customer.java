@@ -1,4 +1,4 @@
-package com.example.oauthServer.entity;
+package com.example.client.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

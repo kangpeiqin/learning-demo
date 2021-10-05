@@ -1,6 +1,6 @@
-package com.example.oauthServer.service;
+package com.example.client.service;
 
-import com.example.oauthServer.entity.Customer;
+import com.example.client.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;

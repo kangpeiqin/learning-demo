@@ -1,4 +1,4 @@
-package com.example.oauthServer.config;
+package com.example.client.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
