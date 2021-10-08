@@ -12,13 +12,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 任务处理
+ *
+ * @author KPQ
+ * @date 2021/10/8
+ */
 @Slf4j
 @Data
 @AllArgsConstructor
 public class DelayJobHandler implements Runnable{
 
     /**
-     * 延迟队列
+     * 延时队列
      */
     private DelayBucket delayBucket;
     /**
@@ -32,8 +38,6 @@ public class DelayJobHandler implements Runnable{
      */
     private int index;
 
-    /**
-     */
     @Override
     public void run() {
         log.info("定时任务开始执行");
