@@ -9,6 +9,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
+ * 存放处于等待执行状态的任务
+ *
  * @author KPQ
  * @date 2021/10/8
  */
@@ -19,7 +21,7 @@ public class ReadyQueue {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    private String NAME = "process.queue.";
+    private final String NAME = "process.queue.";
 
     private String getKey(String topic) {
         return NAME + topic;

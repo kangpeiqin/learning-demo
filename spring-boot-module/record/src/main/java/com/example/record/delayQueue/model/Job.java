@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
+ * 需要异步处理的任务
  * @author KPQ
  * @date 2021/10/8
  */
