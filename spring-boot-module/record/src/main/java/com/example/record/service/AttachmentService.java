@@ -1,6 +1,6 @@
 package com.example.record.service;
 
-import com.example.record.AttachmentProperties;
+import com.example.record.config.AttachmentProperties;
 import com.example.record.utils.AttachmentUtils;
 import com.example.record.vo.StorageVO;
 import lombok.extern.slf4j.Slf4j;

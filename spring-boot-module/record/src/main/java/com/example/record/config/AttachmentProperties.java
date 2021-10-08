@@ -1,4 +1,4 @@
-package com.example.record;
+package com.example.record.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
