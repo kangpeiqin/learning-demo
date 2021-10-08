@@ -1,8 +1,6 @@
 package com.example.client.delayQueue.model;
 
 import com.example.client.delayQueue.constant.JobStatus;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
