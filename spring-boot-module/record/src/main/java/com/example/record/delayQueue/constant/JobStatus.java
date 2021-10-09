@@ -3,7 +3,8 @@ package com.example.record.delayQueue.constant;
 import lombok.Getter;
 
 /**
- * 任务状态枚举：READY(可执行)、DELAY(等待时间到来)、DELETED(已经消费完成)
+ * 任务状态枚举：
+ * READY(可执行)、DELAY(等待时间到来)、RESERVED(已被消费者读取)、DELETED(已经消费完成)
  * @author KPQ
  * @date 2021/10/8
  */

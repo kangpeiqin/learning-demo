@@ -89,7 +89,7 @@ public class DelayJobHandler implements Runnable{
         jobPool.addJob(job);
         // 移除delayBucket中的任务
         delayBucket.removeDelayTime(index,delayJob);
-        Long delayDate = System.currentTimeMillis() + job.getDelayTime();
+        long delayDate = System.currentTimeMillis() + job.getDelayTime();
         delayJob.setDelayDate(delayDate);
         // 再次添加到任务中
         delayBucket.addDelayJob(delayJob);

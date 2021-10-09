@@ -18,8 +18,13 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 一组以时间为维度的有序队列
- * 使用可排序的ZSet保存数据，提供取出最小值等操作
+ * 一组以时间为维度的有序队列，使用可排序的ZSet保存数据，提供取出最小值等操作
+ *
+ * 桶的标识    具体任务   执行时间
+ * key        value       score
+ *
+ * Redis 有序集合：是string类型元素的集合,且不允许重复的元素。每个元素都会关联一个double类型的分数。通过分数来为集合中的成员进行从小到大的排序。
+ * 集合是通过哈希表实现的
  *
  * @author KPQ
  * @date 2021/10/8
@@ -38,6 +43,9 @@ public class DelayBucket {
 
     private List<String> bucketNames = new ArrayList<>();
 
+    /**
+     * 创建 Delay bucket
+     */
     @Bean
     public List<String> createBuckets() {
         for (int i = 0; i < bucketsSize; i++) {

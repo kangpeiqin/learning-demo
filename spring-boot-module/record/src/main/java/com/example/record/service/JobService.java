@@ -26,6 +26,12 @@ public class JobService {
     private JobPool jobPool;
 
 
+    /**
+     *  用户提交任务：比如下订单，订单状态为未支付，30分钟后未支付的订单状态改为订单取消
+     *  1、设置任务状态为延迟状态，往任务池当中添加任务
+     *  2、计算任务的执行时间：当前系统时间+延迟的时间，得出任务将要在某一时刻执行
+     *  3、将任务加入延时队列：等待被执行
+     */
     public DelayJob addDefJob(Job job) {
         job.setStatus(JobStatus.DELAY);
         jobPool.addJob(job);
@@ -45,7 +51,7 @@ public class JobService {
         if (delayJob == null) {
             return new Job();
         }
-        Job job = jobPool.getJob(String.valueOf(delayJob.getJodId()));
+        Job job = jobPool.getJob(delayJob.getJodId());
         // 元数据已经删除，则取下一个
         if (job == null) {
             job = getProcessJob(topic);
