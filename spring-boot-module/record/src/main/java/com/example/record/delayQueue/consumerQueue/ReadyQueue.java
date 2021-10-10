@@ -1,4 +1,4 @@
-package com.example.record.delayQueue.container;
+package com.example.record.delayQueue.consumerQueue;
 
 import cn.hutool.json.JSONUtil;
 import com.example.record.delayQueue.model.DelayJob;
@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
+ * 就绪消息队列：存放等待执行的消息
  * 存放处于等待执行状态的任务
  *
  * @author KPQ
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class ReadyQueue {
+public class ReadyQueue implements ConsumerQueue {
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -43,6 +44,7 @@ public class ReadyQueue {
      *
      * @param delayJob
      */
+    @Override
     public void pushJob(DelayJob delayJob) {
         log.info("执行队列添加任务:{}", delayJob);
         BoundListOperations listOperations = getQueue(delayJob.getTopic());
@@ -55,6 +57,7 @@ public class ReadyQueue {
      * @param topic
      * @return
      */
+    @Override
     public DelayJob popJob(String topic) {
         BoundListOperations listOperations = getQueue(topic);
         Object o = listOperations.leftPop();
