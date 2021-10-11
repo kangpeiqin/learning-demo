@@ -1,8 +1,9 @@
 package com.example.record.delayQueue.timer;
 
+import com.example.record.delayQueue.consumerQueue.ConsumerQueue;
 import com.example.record.delayQueue.container.DelayBucket;
 import com.example.record.delayQueue.container.JobPool;
-import com.example.record.delayQueue.container.ReadyQueue;
+import com.example.record.delayQueue.consumerQueue.ReadyQueue;
 import com.example.record.delayQueue.handler.DelayJobHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -27,10 +29,12 @@ public class DelayTimer implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
     private DelayBucket delayBucket;
+
     @Autowired
     private JobPool jobPool;
-    @Autowired
-    private ReadyQueue readyQueue;
+
+    @Resource(name = "kafkaQueue")
+    private ConsumerQueue readyQueue;
 
     @Value("${thread.size:1}")
     private int length;

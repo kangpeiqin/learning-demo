@@ -1,4 +1,4 @@
-package com.example.record.delayQueue.container;
+package com.example.record.delayQueue.consumerQueue;
 
 import cn.hutool.json.JSONUtil;
 import com.example.record.delayQueue.model.DelayJob;
@@ -9,24 +9,15 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 /**
- *  扫描任务，将到达消费时间要进行消费的任务放到消费队列列表中。
- *
- *  业务都要维护一个自己的扫表逻辑。 当业务越来越多时，我们会发现扫表部分的逻辑会非常类似。
- *  我们可以考虑将这部分逻辑从具体的业务逻辑里面抽出来，变成一个公共的部分
- *
- *  消息进入到延迟队列后，保证至少被消费一次。
- *  实时性：允许存在一定的时间误差。
- *
+ * 就绪消息队列：存放等待执行的消息
  * 存放处于等待执行状态的任务
- *
- * Timer 负责扫描各个Bucket，并将delay时间大于等于当前时间的Job放入对应的Ready Queue
  *
  * @author KPQ
  * @date 2021/10/8
  */
 @Component
 @Slf4j
-public class ReadyQueue {
+public class ReadyQueue implements ConsumerQueue {
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -53,6 +44,7 @@ public class ReadyQueue {
      *
      * @param delayJob
      */
+    @Override
     public void pushJob(DelayJob delayJob) {
         log.info("执行队列添加任务:{}", delayJob);
         BoundListOperations listOperations = getQueue(delayJob.getTopic());
@@ -65,6 +57,7 @@ public class ReadyQueue {
      * @param topic
      * @return
      */
+    @Override
     public DelayJob popJob(String topic) {
         BoundListOperations listOperations = getQueue(topic);
         Object o = listOperations.leftPop();

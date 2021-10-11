@@ -3,6 +3,17 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: 0
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 65536
+      buffer-memory: 524288
   redis:
     database: 0
     host: 127.0.0.1
