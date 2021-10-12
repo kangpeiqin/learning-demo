@@ -20,10 +20,10 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
-    <artifactId>oauth2clientDemo</artifactId>
+    <artifactId>record</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oauth2clientDemo</name>
-    <description>Demo project for oauth2client</description>
+    <name>record</name>
+    <description>1、图片下载、上传、预览 2、基于Redis的延迟队列实现</description>
 
     <dependencies>
         <dependency>
@@ -69,6 +69,12 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <!--  支付宝支付SDK      -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-easysdk</artifactId>
+            <version>2.2.1</version>
         </dependency>
     </dependencies>
 

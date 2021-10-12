@@ -1,4 +1,4 @@
-package com.example.springcloudeureka;
+package com.example.distributeLock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

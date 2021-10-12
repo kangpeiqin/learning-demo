@@ -17,6 +17,7 @@
 
     <modules>
         <module>record</module>
+        <module>distributed_lock</module>
     </modules>
 
     <dependencyManagement>
