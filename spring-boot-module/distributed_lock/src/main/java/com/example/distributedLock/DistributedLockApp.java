@@ -1,4 +1,4 @@
-package com.example.distributeLock;
+package com.example.distributedLock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

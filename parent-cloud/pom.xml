@@ -32,7 +32,7 @@
         </dependencies>
     </dependencyManagement>
     <properties>
-        <spring-boot.version>2.5.4</spring-boot.version>
+        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
         <junit-jupiter.version>5.2.0</junit-jupiter.version>
     </properties>
 

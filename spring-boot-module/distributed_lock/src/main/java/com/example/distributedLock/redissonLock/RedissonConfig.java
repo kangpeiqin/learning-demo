@@ -1,4 +1,4 @@
-package com.example.distributeLock.redissonLock;
+package com.example.distributedLock.redissonLock;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;

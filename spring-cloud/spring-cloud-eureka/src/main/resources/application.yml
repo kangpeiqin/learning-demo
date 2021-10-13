@@ -1,2 +1,14 @@
 server:
-  port: 8088
+  port: 8090
+spring:
+  application:
+    name: eureka  # 项目名称
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false # 示应用启动后不需要从服务治理服务器中同步已注册的服务注册列表数据到本地。
+    register-with-eureka: false # 是否要注册到其他 eureka 服务器上
+    service-url: # 服务发现项目地址
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
