@@ -1,4 +1,4 @@
-package com.example.record.rest;
+package com.example.record.rest.web;
 
 import cn.hutool.json.JSONUtil;
 import com.example.record.delayQueue.model.DelayJob;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2021/10/8
  */
 @RestController
-@RequestMapping("delay")
+@RequestMapping("/api/delay")
 public class DelayController {
 
     @Autowired
