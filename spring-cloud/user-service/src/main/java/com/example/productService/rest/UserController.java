@@ -1,18 +1,16 @@
-package com.example.userService.rest;
+package com.example.productService.rest;
 
-import com.example.userService.entity.User;
-import com.example.userService.repository.UserRepository;
-import com.example.userService.util.Result;
+import com.example.productService.entity.User;
+import com.example.productService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author KPQ
- * @date 2021/10/13
+ * @since 1.0
  */
 @RestController
 @RequestMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -22,8 +20,8 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/all")
-    public Result<List<User>> list() {
-        return Result.success(this.userRepository.findAll());
+    public List<User> list() {
+        return this.userRepository.findAll();
     }
 
     /**
@@ -33,9 +31,9 @@ public class UserController {
      * @return
      */
     @GetMapping(value = "/{id}")
-    public Result<User> detail(@PathVariable("id") Long id) {
+    public User detail(@PathVariable("id") Long id) {
         User user = this.userRepository.getOne(id);
-        return Result.success(user);
+        return user;
     }
 
 }

@@ -1,6 +1,6 @@
-package com.example.userService.repository;
+package com.example.productService.repository;
 
-import com.example.userService.entity.User;
+import com.example.productService.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

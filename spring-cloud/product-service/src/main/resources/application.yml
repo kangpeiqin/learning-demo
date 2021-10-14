@@ -1,0 +1,40 @@
+server:
+  port: 8096
+spring:
+  application:
+    name: productService  # 项目名称
+  datasource: # h2数数据库配置
+    url: jdbc:h2:mem:h2test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    schema: classpath:db/schema.sql # 数据库初始化配置
+    data: classpath:db/data.sql
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
+
+eureka:
+  client:
+    fetch-registry: true # 示应用启动后不需要从服务治理服务器中同步已注册的服务注册列表数据到本地。
+    register-with-eureka: true # 是否要注册到其他 eureka 服务器上
+    service-url: # 服务发现项目地址
+      defaultZone: http://localhost:8090/eureka/
+
+feign:
+  hystrix:
+    enabled: true # 配置开启降级服务

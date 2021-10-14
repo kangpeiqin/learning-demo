@@ -1,4 +1,4 @@
-package com.example.userService.util;
+package com.example.productService.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 
 /**
  * @author KPQ
- * @date 2021/10/13
+ * @since 1.0
  */
 @Data
 @AllArgsConstructor

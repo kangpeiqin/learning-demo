@@ -17,6 +17,7 @@
         <module>spring-cloud-eureka</module>
         <module>oauth2ServerDemo</module>
         <module>user-service</module>
+        <module>product-service</module>
     </modules>
     <dependencyManagement>
         <dependencies>
