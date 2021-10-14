@@ -18,6 +18,7 @@
         <module>oauth2ServerDemo</module>
         <module>user-service</module>
         <module>product-service</module>
+        <module>spring-cloud-zuul</module>
     </modules>
     <dependencyManagement>
         <dependencies>
