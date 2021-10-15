@@ -27,6 +27,8 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+  zipkin:
+    base-url: http://localhost:9100
 
 eureka:
   client:

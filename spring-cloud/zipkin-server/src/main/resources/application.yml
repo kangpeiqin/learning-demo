@@ -9,3 +9,8 @@ eureka:
     register-with-eureka: true # 是否要注册到其他 eureka 服务器上
     service-url: # 服务发现项目地址
       defaultZone: http://localhost:8090/eureka/
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
