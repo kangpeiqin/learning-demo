@@ -27,12 +27,12 @@ public class HttpUtil {
     private HttpUtil() {
     }
 
-    public static String get(String url) {
+    public static Result get(String url) {
         waitFor();
         return get(url, new JSONObject());
     }
 
-    public static String get(String url, JSONObject pJson) {
+    public static Result get(String url, JSONObject pJson) {
         waitFor();
         //构建请求：请求参数、请求头、请求方法
         HttpUriRequest httpGet = getBaseBuilder(HttpGet.METHOD_NAME)
@@ -51,19 +51,19 @@ public class HttpUtil {
         return new BasicNameValuePair(entry.getKey(), StringUtil.get(entry.getValue()));
     }
 
-    public static String clientExe(HttpUriRequest request) {
+    public static Result clientExe(HttpUriRequest request) {
         //创建HTTP请求客户端
+        Result result = new Result().setStatusCode(500);
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             //执行请求
             HttpResponse resp = client.execute(request);
             //获取请求结果
             HttpEntity entity = resp.getEntity();
             String respContent = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-            //将请求结果装成JSON对象
-            return respContent;
+            return result.setData(respContent).setStatusCode(resp.getStatusLine().getStatusCode());
         } catch (Exception e) {
             log.info("💔{}请求错误 : ", request.getMethod(), e);
-            return "";
+            return result;
         }
     }
 

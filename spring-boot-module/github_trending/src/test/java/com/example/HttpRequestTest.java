@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.demo.util.HttpUtil;
+import com.example.demo.util.Result;
 import org.junit.Test;
 
 /**
@@ -11,8 +12,8 @@ public class HttpRequestTest {
 
     @Test
     public void requestTest() {
-        String html = HttpUtil.get("https://github.com/trending/");
-        System.out.println(html);
+        Result result = HttpUtil.get("https://github.com/trending/");
+        System.out.println(result);
     }
 
 }

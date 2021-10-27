@@ -1,16 +1,22 @@
 package com.example.demo.githubTrending.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.example.demo.githubTrending.config.CacheConfig;
 import com.example.demo.githubTrending.model.Contributor;
 import com.example.demo.githubTrending.model.GithubRepository;
 import com.example.demo.util.HttpUtil;
+import com.example.demo.util.Result;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author KPQ
@@ -19,12 +25,16 @@ import java.util.List;
 @Service
 public class GitHubTrendingService {
 
-    public static final String GITHUB_TRENDING_URL = "https://github.com/trending/";
-    public static final String GITHUB_URL = "https://github.com";
+    private static final String GITHUB_TRENDING_URL = "https://github.com/trending/";
+    private static final String GITHUB_URL = "https://github.com";
 
+    @Cacheable(cacheNames = CacheConfig.CacheName.TRENDING_HOT, key = "#language+':'+#since")
     public List<GithubRepository> getGitHubTrending(String language, String since) {
-        String html = HttpUtil.get(GITHUB_TRENDING_URL);
-        return getTrendingRepositories(html);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("language", language);
+        jsonObject.put("since", since);
+        Result result = HttpUtil.get(GITHUB_TRENDING_URL, jsonObject);
+        return getTrendingRepositories((String) result.getData());
     }
 
     private List<GithubRepository> getTrendingRepositories(String html) {
@@ -32,15 +42,13 @@ public class GitHubTrendingService {
         Document doc = Jsoup.parse(html);
         Elements articles = doc.getElementsByTag("article");
         articles.forEach(article -> {
-            Element head = article.getElementsByClass("h3 lh-condensed").first().getElementsByTag("a").first();
+            Element head = article.getElementsByTag("h1").first().getElementsByTag("a").first();
             GithubRepository repository = new GithubRepository();
             setRepositoryInfo(head, repository);
             //中间为描述
-            Element description = article.getElementsByClass("col-9 text-gray my-1 pr-4").first();
-            if (description != null) {
-                repository.setDescription(description.text());
-            }
-            Element footer = article.getElementsByClass("f6 text-gray mt-2").first();
+            Element description = article.getElementsByTag("p").first();
+            Optional.ofNullable(description).ifPresent(t -> repository.setDescription(t.text()));
+            Element footer = article.getElementsByTag("div").last();
             setStarsAndForks(footer, repository);
             repository.setProgrammingLanguage(getProgrammingLanguage(footer));
             repository.setContributors(getContributors(footer));
@@ -60,9 +68,9 @@ public class GitHubTrendingService {
      * @return 编程语言
      */
     private String getProgrammingLanguage(Element footer) {
-        Element span = footer.getElementsByClass("d-inline-block ml-0 mr-3").first();
+        Element span = footer.getElementsByTag("span").first();
         if (span != null) {
-            Element language = footer.getElementsByClass("d-inline-block ml-0 mr-3").first().getElementsByTag("span").last();
+            Element language = span.getElementsByTag("span").last();
             return language.text();
         }
         return "";
@@ -77,7 +85,6 @@ public class GitHubTrendingService {
     private void setRepositoryInfo(Element head, GithubRepository repository) {
         repository.setUrl(GITHUB_URL + head.attr("href"));
         String[] authorAndTitle = head.attr("href").trim().split("/");
-        System.out.println(head.attr("href"));
         repository.setAuthor(authorAndTitle[1]);
         repository.setTitle(authorAndTitle[2]);
     }
