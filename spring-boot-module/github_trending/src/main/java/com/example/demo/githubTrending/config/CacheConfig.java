@@ -21,12 +21,14 @@ public class CacheConfig {
 
         public static final String TRENDING_HOT = "trending_hot";
 
+        public static final String HOT_DEVELOPS = "hot_develops";
+
     }
 
     @Bean
     public CacheManager cacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
-        cacheManager.setCacheNames(Collections.singletonList(CacheName.TRENDING_HOT));
+        cacheManager.setCacheNames(Arrays.asList(CacheName.TRENDING_HOT,CacheName.HOT_DEVELOPS));
         cacheManager.setCaffeine(Caffeine.newBuilder()
                 .expireAfterAccess(1, TimeUnit.DAYS));
         return cacheManager;

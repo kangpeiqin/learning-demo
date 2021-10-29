@@ -2,6 +2,7 @@ package com.example.demo.githubTrending.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.githubTrending.config.CacheConfig;
+import com.example.demo.githubTrending.constant.Constant;
 import com.example.demo.githubTrending.model.Contributor;
 import com.example.demo.githubTrending.model.GithubRepository;
 import com.example.demo.util.HttpUtil;
@@ -24,15 +25,12 @@ import java.util.Optional;
 @Service
 public class GitHubTrendingService {
 
-    private static final String GITHUB_TRENDING_URL = "https://github.com/trending/";
-    private static final String GITHUB_URL = "https://github.com";
-
     @Cacheable(cacheNames = CacheConfig.CacheName.TRENDING_HOT, key = "#language+':'+#since")
     public List<GithubRepository> getGitHubTrending(String language, String since) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("language", language);
         jsonObject.put("since", since);
-        Result result = HttpUtil.get(GITHUB_TRENDING_URL, jsonObject);
+        Result result = HttpUtil.get(Constant.GITHUB_TRENDING_URL, jsonObject);
         return getTrendingRepositories((String) result.getData());
     }
 
@@ -41,9 +39,12 @@ public class GitHubTrendingService {
         Document doc = Jsoup.parse(html);
         Elements articles = doc.getElementsByTag("article");
         articles.forEach(article -> {
-            Element head = article.getElementsByTag("h1").first().getElementsByTag("a").first();
             GithubRepository repository = new GithubRepository();
-            setRepositoryInfo(head, repository);
+            Optional<Element> head = Optional.ofNullable(article.getElementsByTag("h1").first());
+            head.ifPresent(t -> {
+                Optional<Element> el = Optional.ofNullable(t.getElementsByTag("a").first());
+                el.ifPresent(l -> setRepositoryInfo(l, repository));
+            });
             //中间为描述
             Element description = article.getElementsByTag("p").first();
             Optional.ofNullable(description).ifPresent(t -> repository.setDescription(t.text()));
@@ -82,7 +83,7 @@ public class GitHubTrendingService {
      * @param repository
      */
     private void setRepositoryInfo(Element head, GithubRepository repository) {
-        repository.setUrl(GITHUB_URL + head.attr("href"));
+        repository.setUrl(Constant.GITHUB_URL + head.attr("href"));
         String[] authorAndTitle = head.attr("href").trim().split("/");
         repository.setAuthor(authorAndTitle[1]);
         repository.setTitle(authorAndTitle[2]);
@@ -96,7 +97,7 @@ public class GitHubTrendingService {
             if (element != null) {
                 String avatar = element.attr("src");
                 String accountLink = link.attr("href");
-                Contributor contributor = new Contributor(avatar, GITHUB_URL + accountLink);
+                Contributor contributor = new Contributor(avatar, Constant.GITHUB_URL + accountLink);
                 contributorsList.add(contributor);
             }
         }
