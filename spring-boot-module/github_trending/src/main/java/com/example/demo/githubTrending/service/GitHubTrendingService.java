@@ -93,13 +93,13 @@ public class GitHubTrendingService {
         List<Contributor> contributorsList = new ArrayList<>();
         Elements links = footer.getElementsByTag("a");
         for (Element link : links) {
-            Element element = link.getElementsByClass("avatar mb-1 avatar-user").first();
-            if (element != null) {
-                String avatar = element.attr("src");
+            Optional<Element> element = Optional.ofNullable(link.getElementsByClass("avatar mb-1 avatar-user").first());
+            element.ifPresent(t -> {
+                String avatar = t.attr("src");
                 String accountLink = link.attr("href");
                 Contributor contributor = new Contributor(avatar, Constant.GITHUB_URL + accountLink);
                 contributorsList.add(contributor);
-            }
+            });
         }
         return contributorsList;
     }
