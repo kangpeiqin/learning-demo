@@ -50,7 +50,7 @@
                 resp: '',
                 language: 'any',
                 since: 'daily',
-                languages: [{value: '', label: 'Any'}, {value: 'java', label: 'Java'}, {value: 'c', label: 'C'},
+                languages: [{value: null, label: 'Any'}, {value: 'java', label: 'Java'}, {value: 'c', label: 'C'},
                     {value: 'python', label: 'Python'}, {value: 'go', label: 'Go'},
                     {value: 'javaScript', label: 'JavaScript'}],
                 sinceRange: [{label: 'daily', value: 'daily'}, {label: 'weekly', value: 'weekly'}, {
@@ -61,7 +61,12 @@
         },
         methods: {
             getData: function () {
-                let baseUrl = 'http://localhost:8088/test/trend/' + this.language + '?since=' + this.since;
+                let baseUrl = 'http://localhost:8088/test/trend';
+                if (this.language != null) {
+                    baseUrl = baseUrl + '/' + this.language + '?since=' + this.since;
+                } else {
+                    baseUrl = baseUrl + '?since=' + this.since;
+                }
                 let _this = this;
                 axios.get(baseUrl).then(function (response) {
                     _this.resp = response.data;
@@ -72,8 +77,9 @@
             }
         },
         created: function () {
-            this.language = 'any';
-            this.since = 'daily'
+            this.language = null;
+            this.since = 'daily';
+            this.getData();
         }
     })
 </script>

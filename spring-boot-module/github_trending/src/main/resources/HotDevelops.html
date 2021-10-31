@@ -47,7 +47,7 @@
                 resp: '',
                 language: 'any',
                 since: 'daily',
-                languages: [{value: '', label: 'Any'}, {value: 'java', label: 'Java'}, {value: 'c', label: 'C'},
+                languages: [{value: null, label: 'Any'}, {value: 'java', label: 'Java'}, {value: 'c', label: 'C'},
                     {value: 'python', label: 'Python'}, {value: 'go', label: 'Go'},
                     {value: 'javaScript', label: 'JavaScript'}],
                 sinceRange: [{label: 'daily', value: 'daily'}, {label: 'weekly', value: 'weekly'}, {
@@ -71,6 +71,7 @@
         created: function () {
             this.language = 'any';
             this.since = 'daily'
+            this.getData();
         }
     })
 </script>
