@@ -217,7 +217,7 @@ public class ExcelHelper<T> {
                 T entity = clazz.newInstance();
                 for (int col = 0; col < fieldList.size(); col++) {
                     Object val = this.getCellValue(row, col);
-                    Field field = fieldList.get(i);
+                    Field field = fieldList.get(col);
                     ReflectUtil.setFieldValue(entity, field.getName(), val);
                 }
                 list.add(entity);
