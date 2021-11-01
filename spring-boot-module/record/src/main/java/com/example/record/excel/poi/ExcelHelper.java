@@ -1,21 +1,24 @@
 package com.example.record.excel.poi;
 
+import cn.hutool.core.util.ReflectUtil;
 import com.example.record.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.Lists;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
-import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,7 +40,7 @@ public class ExcelHelper<T> {
     /**
      * excel 工作簿
      */
-    private final Workbook wb;
+    private Workbook wb;
 
     public ExcelHelper(Class<T> clazz) {
         this.clazz = clazz;
@@ -189,6 +192,64 @@ public class ExcelHelper<T> {
         response.addHeader("Cache-Control", "no-cache");
         response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(excelName + ".xlsx", "utf-8"));
         response.setHeader("content-filedownloadname", URLEncoder.encode(excelName + ".xlsx", "utf-8"));
+    }
+
+    public List<T> importExcel(@NonNull MultipartFile file) throws Exception {
+        List<T> list = Lists.newArrayList();
+        wb = WorkbookFactory.create(file.getInputStream());
+        Sheet sheet = wb.getSheetAt(0);
+        if (sheet == null) {
+            throw new RuntimeException("文件Sheet页不存在");
+        }
+        int rows = sheet.getPhysicalNumberOfRows();
+        if (rows > 0) {
+            //表头校验
+            Row head = sheet.getRow(0);
+            for (int i = 0; i < fieldList.size(); i++) {
+                Cell cell = head.getCell(i);
+                if (cell == null || !cell.toString()
+                        .equals(fieldList.get(i).getAnnotation(Excel.class).name())) {
+                    throw new IllegalArgumentException("导入模板有误！");
+                }
+            }
+            for (int i = 1; i < rows; i++) {
+                Row row = sheet.getRow(i);
+                T entity = clazz.newInstance();
+                for (int col = 0; col < fieldList.size(); col++) {
+                    Object val = this.getCellValue(row, col);
+                    Field field = fieldList.get(i);
+                    ReflectUtil.setFieldValue(entity, field.getName(), val);
+                }
+                list.add(entity);
+            }
+        }
+        return list;
+    }
+
+    private Object getCellValue(Row row, int column) {
+        Cell cell = row.getCell(column);
+        if (cell == null) {
+            return "";
+        }
+        CellType cellType = cell.getCellType();
+        Object val;
+        switch (cellType) {
+            case NUMERIC:
+                val = cell.getNumericCellValue();
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    val = DateUtil.getJavaDate((Double) val);
+                }
+                break;
+            case BOOLEAN:
+                val = cell.getBooleanCellValue();
+                break;
+            case STRING:
+                val = cell.getStringCellValue();
+                break;
+            default:
+                val = "";
+        }
+        return val;
     }
 
 }
