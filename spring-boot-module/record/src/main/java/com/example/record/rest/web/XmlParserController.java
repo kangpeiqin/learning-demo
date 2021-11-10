@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
  * @date 2021/11/10
  */
 @RestController
-public class XMLParserController {
+public class XmlParserController {
 
     @PostMapping("xml-parser")
     @ApiOperation("文件上传")
