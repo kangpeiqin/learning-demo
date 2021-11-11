@@ -62,9 +62,9 @@ public class XmlUtil {
             marshaller.marshal(entity, writer);
             return writer.toString().trim();
         } catch (JAXBException e) {
-            log.error("toXml异常", e);
+            log.error("to Xml error", e);
+            throw new RuntimeException("to Xml error");
         }
-        return "";
     }
 
     public static void main(String[] args) {
