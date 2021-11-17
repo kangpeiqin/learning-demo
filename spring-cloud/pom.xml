@@ -20,6 +20,7 @@
         <module>product-service</module>
         <module>spring-cloud-zuul</module>
         <module>zipkin-server</module>
+        <module>oauth2ResourceServer</module>
     </modules>
     <dependencyManagement>
         <dependencies>
