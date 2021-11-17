@@ -1,35 +1,49 @@
 package com.example.record.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * 基本的安全配置
- *
- * @author kpq
- * @since 1.0.0
+ * @author KPQ
+ * @date 2021/11/17
  */
 @Configuration
-@Order(1)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    private final ClientLogoutSuccessHandler clientLogoutSuccessHandler;
+    private final ClientLoginFailureHandler clientLoginFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated();
+                .failureHandler(clientLoginFailureHandler)
+                .and().authorizeRequests()
+                .antMatchers("/oauth/**")
+                .permitAll().anyRequest().authenticated();
+    }
+
+    /**
+     * 授权管理.
+     *
+     * @return 认证管理对象
+     * @throws Exception 认证异常信息
+     */
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
