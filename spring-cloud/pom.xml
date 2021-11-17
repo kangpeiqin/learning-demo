@@ -21,6 +21,7 @@
         <module>spring-cloud-zuul</module>
         <module>zipkin-server</module>
         <module>oauth2ResourceServer</module>
+        <module>mini_system</module>
     </modules>
     <dependencyManagement>
         <dependencies>
