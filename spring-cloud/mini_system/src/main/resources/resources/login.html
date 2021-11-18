@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/login.css" type="text/css">
+</head>
+<body>
+<form class="login-page" action="/login" method="post">
+    <div class="form">
+        <h3>登录</h3>
+        <input type="text" placeholder="用户名" name="username" required="required"/>
+        <input type="password" placeholder="密码" name="password" required="required"/>
+        <button type="submit">登录</button>
+    </div>
+    <br/>
+    <label><a href="http://127.0.0.1:8080/oauth/authorize?response_type=code&client_id=oauth2&redirect_uri=http://127.0.0.1:8089/test&scope=READ" style="color: white">第三方登录</a></label>
+</form>
+</body>
+</html>

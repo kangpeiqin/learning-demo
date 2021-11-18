@@ -63,7 +63,7 @@ class AuthorizationCodeGrantTest {
         assertNotNull(response);
         cookie = response.getHeaders().getFirst("Set-Cookie");
         headers = new HttpHeaders();
-        headers.set("Cookie", cookie);
+        headers.set("Cookie", "092CDB017936F41C8A48BB34683D6ED6");
         headers.setAccept(Collections.singletonList(MediaType.ALL));
         // 4. 获取授权码
         ResponseEntity<String> confirm = authorizationServerInfo.getForString("/oauth/authorize?response_type=code&client_id=oauth2&redirect_uri=http://example.com&scope=READ");
@@ -80,7 +80,7 @@ class AuthorizationCodeGrantTest {
             form = new LinkedMultiValueMap<>();
             form.add("user_oauth_approval", "true");
             form.add("scope.READ", "true");
-            form.add("_csrf", matcherConfirm.group(1));
+            form.add("_csrf", "0c28e74e-a271-4378-9940-406d779ff622");
 
             // 6. 请求授权，获取 授权码
             headers = authorizationServerInfo.postForHeaders("/oauth/authorize", form, headers);
