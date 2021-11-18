@@ -1,13 +1,14 @@
 package com.example.demo.rest;
 
-import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpUtil;
 import com.example.demo.security.util.ResultUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author KPQ
@@ -24,14 +25,18 @@ public class TestController {
     @GetMapping("/test")
     public ResultUtil<String> unauthorized(@RequestParam("code") String code) throws UnsupportedEncodingException {
         final String url = "http://127.0.0.1:8080/oauth/token";
-        String res = HttpRequest.post(url)
-                .body(URLEncoder.encode("grant_type", "utf-8"), URLEncoder.encode("authorization_code", "utf-8"))
-                .body("code", URLEncoder.encode(code, "utf-8"))
-                .body("scope", "READ")
-                .body("redirect_uri", "http://127.0.0.1:8089/test")
-                .body("clientId", "oauth2")
-                .header("Authorization", "Basic b2F1dGgyOm9hdXRoMg==")
-                .header("Content-Type", "application/x-www-form-urlencoded")
+        Map<String, Object> params = new HashMap<>(16);
+        params.put("grant_type","authorization_code");
+        params.put("code",code);
+        params.put("redirect_uri","http://127.0.0.1:8089/test");
+        params.put("scope", "READ");
+        params.put("clientId", "oauth2");
+        Map<String,String> headers = new HashMap<>(16);
+        headers.put("Authorization", "Basic b2F1dGgyOm9hdXRoMg==");
+        headers.put("Content-Type", "application/x-www-form-urlencoded");
+        String res = HttpUtil.createPost(url)
+                .form(params)
+                .addHeaders(headers)
                 .execute().body();
         return ResultUtil.success(res);
     }
