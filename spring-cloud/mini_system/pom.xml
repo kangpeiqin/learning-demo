@@ -31,6 +31,11 @@
             <artifactId>jjwt-api</artifactId>
             <version>${jwt.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.5.9</version>
+        </dependency>
         <!--JWT 依赖-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
