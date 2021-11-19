@@ -38,7 +38,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-
+        security
+                // 获取 token key 需要进行 basic 认证客户端信息
+                .tokenKeyAccess("isAuthenticated()")
+                // 获取 token 信息同样需要 basic 认证客户端信息
+                .checkTokenAccess("isAuthenticated()");
     }
 
     /**

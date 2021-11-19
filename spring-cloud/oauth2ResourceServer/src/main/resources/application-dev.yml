@@ -1,6 +1,17 @@
 server:
   port: 8081
 
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://127.0.0.1:8080/oauth/check_token
+      id: oauth2
+    client:
+      client-id: oauth2
+      client-secret: oauth2
+      access-token-uri: http://localhost:8080/oauth/token
+      scope: READ
+
 logging:
   level:
     org.springframework.security: debug

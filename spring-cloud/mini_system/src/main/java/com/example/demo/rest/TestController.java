@@ -1,6 +1,8 @@
 package com.example.demo.rest;
 
 import cn.hutool.http.HttpUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.example.demo.security.util.ResultUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,22 +24,33 @@ public class TestController {
         return ResultUtil.success("success");
     }
 
+    @GetMapping("/common/test")
+    public ResultUtil<String> commonTest() {
+        return ResultUtil.success("success");
+    }
+
     @GetMapping("/test")
     public ResultUtil<String> unauthorized(@RequestParam("code") String code) throws UnsupportedEncodingException {
         final String url = "http://127.0.0.1:8080/oauth/token";
         Map<String, Object> params = new HashMap<>(16);
-        params.put("grant_type","authorization_code");
-        params.put("code",code);
-        params.put("redirect_uri","http://127.0.0.1:8089/test");
+        params.put("grant_type", "authorization_code");
+        params.put("code", code);
+        params.put("redirect_uri", "http://127.0.0.1:8089/test");
         params.put("scope", "READ");
         params.put("clientId", "oauth2");
-        Map<String,String> headers = new HashMap<>(16);
+        Map<String, String> headers = new HashMap<>(16);
         headers.put("Authorization", "Basic b2F1dGgyOm9hdXRoMg==");
         headers.put("Content-Type", "application/x-www-form-urlencoded");
         String res = HttpUtil.createPost(url)
                 .form(params)
                 .addHeaders(headers)
                 .execute().body();
-        return ResultUtil.success(res);
+        JSONObject jsonObject = JSONUtil.parseObj(res);
+        String accessToken = (String) jsonObject.get("access_token");
+        final String userInfoUrl = "http://127.0.0.1:8081/userInfo";
+        String userInfo = HttpUtil.createGet(userInfoUrl)
+                .header("Authorization", "Bearer " + accessToken)
+                .execute().body();
+        return ResultUtil.success(res + "\n" + userInfo);
     }
 }

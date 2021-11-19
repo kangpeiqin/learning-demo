@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring()
                 .antMatchers(HttpMethod.OPTIONS, "/**")
+                .antMatchers("/css/**")
                 .antMatchers("/test");
     }
 
@@ -73,6 +74,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login.html").permitAll()
+                //开启认证
+                .anyRequest().authenticated()
                 .and().csrf().disable()
                 //前后端分离采用JWT 不需要session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()

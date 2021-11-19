@@ -1,5 +1,7 @@
 package com.example.demo.security.exception;
 
+import com.example.demo.security.util.ResponseUtil;
+import com.example.demo.security.util.ResultUtil;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,7 @@ public class SimpleAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
+        ResponseUtil.response(response, ResultUtil.unauthorized());
     }
 
 }
