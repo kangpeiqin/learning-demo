@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="css/common.css" type="text/css">
 </head>
 <style>
-    .login-active{
+    .sign-active{
         border-bottom:2px solid #ffae50
     }
 </style>
 <body>
-<form class="login-page" action="/login" method="post">
+<form class="login-page" action="/user/sign-up" method="post">
     <div class="form">
         <div class="normal-title">
             <a class="login-active" href="/login.html">登录</a>
@@ -19,11 +19,9 @@
             <a class="sign-active" href="/signUp.html">注册</a>
         </div>
         <input type="text" placeholder="用户名" name="username" required="required"/>
-        <input type="password" placeholder="密码" name="password" required="required"/>
-        <button type="submit">登录</button>
+        <input type="password" placeholder="设置密码" name="password" required="required"/>
+        <button type="submit">注册</button>
     </div>
-    <br/>
-    <label><a href="http://127.0.0.1:8080/oauth/authorize?response_type=code&client_id=oauth2&redirect_uri=http://127.0.0.1:8089/test&scope=READ" style="color: white">第三方登录</a></label>
 </form>
 </body>
 </html>

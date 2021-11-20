@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>确认您的授权信息</title>
+    <link rel="stylesheet" th:href="@{/css/authorization.css}" type="text/css">
+</head>
+<body>
+<form class="login-page" th:action="@{/oauth/authorize}" method="post">
+    <div class="form">
+        <div class="normal-title">
+            <label class="auth-title">确认应用的授权信息</label>
+        </div>
+        <button type="button" class="client-btn">
+            <span class="v-btn-content" th:text="'客户端:' + ${#strings.toUpperCase(clientId)}"></span>
+        </button>
+        <div class="v-subheader">当前应用将会获取您的以下权限：</div>
+        <div class="v-item" th:each="scope : ${scopes}">
+            <input type="hidden" th:name="'scope.' + ${scope}" value="true">
+            <li th:text="${#strings.toUpperCase(scope)}"></li>
+        </div>
+        <input type="hidden" name="user_oauth_approval" value="true">
+        <button type="submit" class="auth-btn">
+            <span class="v-btn__content">确认授权</span>
+        </button>
+    </div>
+</form>
+</body>
+</html>

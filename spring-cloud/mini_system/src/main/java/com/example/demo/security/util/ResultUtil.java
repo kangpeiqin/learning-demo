@@ -1,6 +1,7 @@
 package com.example.demo.security.util;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 @Data
 @AllArgsConstructor
 @Accessors(chain = true)
+@Builder
 public class ResultUtil<T> {
 
     private ResultUtil() {
@@ -22,6 +24,15 @@ public class ResultUtil<T> {
     private String msg;
 
     private T data;
+
+
+    public static <T> ResultUtil<T> error(String msg, T data) {
+        ResultUtil<T> resultUtil = new ResultUtil<T>()
+                .setCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .setMsg(msg)
+                .setData(data);
+        return resultUtil;
+    }
 
     public static <T> ResultUtil<T> success(T data) {
         ResultUtil<T> resultUtil = new ResultUtil<T>()

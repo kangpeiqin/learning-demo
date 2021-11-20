@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -32,11 +33,13 @@ public class SysUser implements UserDetails {
     /**
      * 用户名.
      */
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     /**
      * 密码.
      */
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**

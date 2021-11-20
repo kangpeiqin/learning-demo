@@ -2,6 +2,8 @@ package com.example.demo.security.handler;
 
 import com.example.demo.security.util.ResponseUtil;
 import com.example.demo.security.util.ResultUtil;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -22,6 +24,11 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        ResponseUtil.response(response, ResultUtil.unauthorized());
+        if (exception instanceof BadCredentialsException) {
+            ResponseUtil.response(response, ResultUtil.builder()
+                    .code(HttpStatus.UNAUTHORIZED.value()).msg("username or password error").build());
+        }else {
+            ResponseUtil.response(response, ResultUtil.unauthorized());
+        }
     }
 }
