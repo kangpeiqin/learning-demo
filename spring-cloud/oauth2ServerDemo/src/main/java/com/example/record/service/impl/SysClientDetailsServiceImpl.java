@@ -6,6 +6,7 @@ import com.example.record.entity.SysClientDetails;
 import com.example.record.mapper.SysClientDetailsMapper;
 import com.example.record.service.SysClientDetailsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientAlreadyExistsException;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -73,5 +74,9 @@ public class SysClientDetailsServiceImpl extends ServiceImpl<SysClientDetailsMap
     @Override
     public List<SysClientDetails> findAll() {
         return this.list();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("oauth2"));
     }
 }

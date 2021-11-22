@@ -5,12 +5,12 @@ security:
   oauth2:
     resource:
       token-info-uri: http://127.0.0.1:8080/oauth/check_token
-      id: oauth2
-    client:
-      client-id: oauth2
+      id: test  # 资源id，可能存在多个资源服务器，可以配置客户端拥有哪些资源的访问权限
+    client:  #资源服务器作为客户向授权服务器申请令牌
+      client-id: test
       client-secret: oauth2
       access-token-uri: http://localhost:8080/oauth/token
-      scope: READ
+      scope: READ,WRITE
 
 logging:
   level:
