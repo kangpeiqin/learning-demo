@@ -1,9 +1,12 @@
 package com.example.record.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.util.List;
 
 /**
  * 系统用户：保存当前系统用户的信息
@@ -27,5 +30,8 @@ public class SysUser extends BaseEntity {
      */
     private String password;
 
+
+    @TableField(exist = false)
+    private List<SysRole> roleList;
 
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录成功</title>
+</head>
+<body>
+<div>
+    <h1>登录成功</h1>
+    <h2 th:text="'用户名：'+${user.getUsername()}"></h2>
+    <h2 th:text="'权限：'+${user.getAuthorities()}"></h2>
+</div>
+
+</body>
+</html>

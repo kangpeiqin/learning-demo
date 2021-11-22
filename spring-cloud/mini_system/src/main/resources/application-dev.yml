@@ -2,29 +2,53 @@ server:
   port: 8089
 
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
     #    url: jdbc:mysql://127.0.0.1:3306/oauth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-    url: jdbc:mysql://localhost:3306/test?allowPublicKeyRetrieval=true
-    username: root
-    password: 123456
+#    url: jdbc:mysql://localhost:3306/test?allowPublicKeyRetrieval=true
+#    username: root
+#    password: 123456
+#    schema: classpath:db/schema.sql # 数据库初始化配置
+#    data: classpath:db/data.sql
+#    hikari:
+#      data-source-properties:
+#        useSSL: false
+#        serverTimezone: GMT+8
+#        useUnicode: true
+#        characterEncoding: utf8
+  datasource: # h2数数据库配置
+    url: jdbc:h2:mem:h2test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
     schema: classpath:db/schema.sql # 数据库初始化配置
     data: classpath:db/data.sql
-    hikari:
-      data-source-properties:
-        useSSL: false
-        serverTimezone: GMT+8
-        useUnicode: true
-        characterEncoding: utf8
   jpa:
-    show-sql: true
-    generate-ddl: false
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-    open-in-view: true
     properties:
       hibernate:
-      dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
+#  jpa:
+#    show-sql: true
+#    generate-ddl: false
+#    hibernate:
+#      ddl-auto: update
+#    open-in-view: true
+#    properties:
+#      hibernate:
+#      dialect: org.hibernate.dialect.MySQL57InnoDBDialect
 
 jwt:
   key: bPem0BaWWLT8oYg7NGLsDhKLlTqfgIYVaQex5vDN8Qc= #JWT密钥

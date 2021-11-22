@@ -1,5 +1,6 @@
 package com.example.demo.githubTrending.rest;
 
+import com.example.demo.aspect.Limiter;
 import com.example.demo.githubTrending.model.Developer;
 import com.example.demo.githubTrending.model.GithubRepository;
 import com.example.demo.githubTrending.service.GitHubTrendingService;
@@ -25,6 +26,7 @@ public class GithubTrendingController {
     private HotDeveloperService hotDeveloperService;
 
     @GetMapping({"/test/trend/{language}", "/test/trend"})
+    @Limiter(value = 2.0, timeout = 300)
     @CrossOrigin({"*"})
     public List<GithubRepository> getTrending(@PathVariable(required = false) String language, @RequestParam(value = "since", required = false) String since) {
         List<GithubRepository> repositoryList = gitHubTrendingService.getGitHubTrending(language, since);

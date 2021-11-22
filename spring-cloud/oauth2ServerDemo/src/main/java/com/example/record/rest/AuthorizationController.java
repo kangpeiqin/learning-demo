@@ -17,9 +17,9 @@ import java.util.Map;
 public class AuthorizationController {
 
     /**
-     * 自定义确认授权页面
-     * 当然你也可以使用 {@link AuthorizationEndpoint#setUserApprovalPage(String)} 方法
-     * 进行设置，但是 model 就没有那么灵活了
+     * 自定义确认授权页面，
+     * 也可以使用 {@link AuthorizationEndpoint # setUserApprovalPage(String)} 方法
+     *
      *
      * @param model
      * @return
