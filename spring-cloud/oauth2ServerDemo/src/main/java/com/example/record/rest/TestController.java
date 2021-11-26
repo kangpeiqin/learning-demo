@@ -22,6 +22,12 @@ public class TestController {
         return "test";
     }
 
+    @GetMapping("msg")
+    @ResponseBody
+    public String getMsg() {
+        return "msg";
+    }
+
     @GetMapping("admin")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseBody

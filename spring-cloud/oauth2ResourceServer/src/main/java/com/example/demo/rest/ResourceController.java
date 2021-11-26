@@ -17,7 +17,7 @@ public class ResourceController {
     @PreAuthorize("#oauth2.hasScope('READ')")
     @GetMapping("/read")
     public String read() {
-        return "READ";
+        return "================READ================";
     }
 
     /**
@@ -28,7 +28,7 @@ public class ResourceController {
     @PreAuthorize("#oauth2.hasScope('WRITE')")
     @GetMapping("/write")
     public String write() {
-        return "WRITE";
+        return "====================WRITE============";
     }
 
 
