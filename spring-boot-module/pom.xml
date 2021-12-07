@@ -19,6 +19,7 @@
         <module>record</module>
         <module>distributed_lock</module>
         <module>github_trending</module>
+        <module>server_monitor</module>
     </modules>
 
     <dependencyManagement>
