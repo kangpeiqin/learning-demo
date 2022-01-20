@@ -1,2 +1,7 @@
 server:
   port: 8088
+
+spring:
+  task:
+    execution:
+      threadNamePrefix: asyncThread

@@ -20,6 +20,9 @@
         <module>distributed_lock</module>
         <module>github_trending</module>
         <module>server_monitor</module>
+        <module>pay_demo</module>
+        <module>seckill_demo</module>
+        <module>dubbo_demo</module>
     </modules>
 
     <dependencyManagement>
