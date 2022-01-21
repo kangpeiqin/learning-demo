@@ -50,7 +50,7 @@ attachment:
   max-size: 4  # 大小限制4MB
 
 scheduling:
-  enabled: true
+  enabled: false
   daily-job: 0 0/5 * * * ?
 
 # 3.0.0 版本后加密要进行额外的配置 idea 启动参数 VM options: -Djasypt.encryptor.password=****

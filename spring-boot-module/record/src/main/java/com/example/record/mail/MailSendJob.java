@@ -33,12 +33,14 @@ public class MailSendJob {
         MimeMessageHelper helper = new MimeMessageHelper(message);
         //邮件设置
         try {
-            log.info("发送邮件");
+            log.info("----发送邮件-----");
             helper.setFrom(mailProperties.getUsername());
             helper.setTo("xxxxxx@qq.com");
             //邮件主题
             helper.setSubject("注册验证码");
+            //邮件内容
             helper.setText(code);
+            //发送邮件
             mailSender.send(message);
         } catch (Exception e) {
             log.error("发送邮件异常{}", e.getMessage(), e);
