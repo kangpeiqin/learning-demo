@@ -36,14 +36,18 @@ public class ProductService extends ServiceImpl<ProductMapper, Product> {
     //    @Transactional(rollbackFor = Exception.class)
     public void createOrder(int prodId) {
         // =======================情况1：==================================
-        //库存检查，多个线程获取到的库存数据可能是一样的，这样就会导致后面减库存操作问题(减库存，更新库存，非原子性，会引发一致性问题)
+        //库存检查，多个线程获取到的库存数据可能是一样的，这样就会导致后面减库存操作问题(减库存，更新库存，非原子性)
+        //线程1：获取到库存 50  库存 - 1  49
+        //线程2：获取到库存 50  库存 - 1  49
         Product prod = checkStock(prodId);
         prod.setNum(prod.getNum() - 1);
         prod.setSale(prod.getSale() + 1);
         // =======================情况1==================================
-        this.updateById(prod);
-        //订单详情创建
-        orderDetailService.create(prod);
+        boolean flag = this.updateById(prod);
+        if (flag) {
+            //订单详情创建
+            orderDetailService.create(prod);
+        }
     }
 
     /**
@@ -63,9 +67,11 @@ public class ProductService extends ServiceImpl<ProductMapper, Product> {
      * 使用悲观锁，数据库行锁
      */
     public void useDataBaseLock(int prodId) {
-        //数据库行锁，库存检查,应该要确保原子性
-        this.getBaseMapper().decreaseStock(prodId);
-        Product prod = checkStock(prodId);
-        orderDetailService.create(prod);
+        //数据库行锁
+        int flag = this.getBaseMapper().decreaseStock(prodId);
+        if (flag == 1) {
+            Product prod = this.getById(prodId);
+            orderDetailService.create(prod);
+        }
     }
 }

@@ -21,10 +21,10 @@ public class TestController {
 
     @PostMapping("createOrder")
     public ResponseEntity createOrder(int prodId) {
-        //1、方法加锁
-//        productService.useLock(prodId);
-        //2、普通方式
+        //1、普通方式
 //        productService.createOrder(prodId);
+        //2、方法加锁
+//        productService.useLock(prodId);
         //3、数据库行锁
         productService.useDataBaseLock(prodId);
         return Result.success(null);

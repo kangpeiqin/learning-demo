@@ -9,7 +9,7 @@ CREATE TABLE `product` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS consumer_order;
+DROP TABLE IF EXISTS order_detail;
 -- 订单详情表 --
 CREATE TABLE `order_detail` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
