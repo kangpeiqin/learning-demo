@@ -18,9 +18,9 @@ public class PayDemoAppTest {
         StandardPBEStringEncryptor standardPBEStringEncryptor = new StandardPBEStringEncryptor();
         EnvironmentPBEConfig config = new EnvironmentPBEConfig();
         config.setAlgorithm("PBEWithMD5AndDES");          // 加密的算法，这个算法是默认的
-        config.setPassword("--------");                        // 加密的密钥
+        config.setPassword("keepHungry");                        // 加密的密钥
         standardPBEStringEncryptor.setConfig(config);
-        String pass = "!!!!!";
+        String pass = "123456";
         String encPass = standardPBEStringEncryptor.encrypt(pass);
         System.out.println(encPass);
     }

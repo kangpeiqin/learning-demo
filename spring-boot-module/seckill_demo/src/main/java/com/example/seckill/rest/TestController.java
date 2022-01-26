@@ -26,7 +26,9 @@ public class TestController {
         //2、方法加锁
 //        productService.useLock(prodId);
         //3、数据库行锁
-        productService.useDataBaseLock(prodId);
+//        productService.useDataBaseLock(prodId);
+        //4、使用乐观锁
+        productService.useByOptimistic(prodId);
         return Result.success(null);
     }
 

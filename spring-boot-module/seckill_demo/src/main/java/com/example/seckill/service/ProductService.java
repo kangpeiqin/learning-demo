@@ -74,4 +74,16 @@ public class ProductService extends ServiceImpl<ProductMapper, Product> {
             orderDetailService.create(prod);
         }
     }
+
+    /**
+     * 使用乐观锁进行更新
+     */
+    public void useByOptimistic(int prodId) {
+        Product prod = checkStock(prodId);
+        //根据版本号进行更新
+        int flag = this.getBaseMapper().updateByOptimistic(prod.getId(), prod.getVersion());
+        if (flag == 1) {
+            orderDetailService.create(prod);
+        }
+    }
 }
