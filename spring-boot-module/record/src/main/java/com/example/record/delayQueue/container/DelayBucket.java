@@ -19,10 +19,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 一组以时间为维度的有序队列，使用可排序的ZSet保存数据，提供取出最小值等操作
- *
+ * <p>
  * 桶的标识    具体任务   执行时间
  * key        value       score
- *
+ * <p>
  * Redis 有序集合：是string类型元素的集合,且不允许重复的元素。每个元素都会关联一个double类型的分数。通过分数来为集合中的成员进行从小到大的排序。
  * 集合是通过哈希表实现的
  *
@@ -95,6 +95,7 @@ public class DelayBucket {
     public DelayJob getFirstDelayTime(Integer index) {
         String name = bucketNames.get(index);
         BoundZSetOperations bucket = getBucket(name);
+        //获取排名最靠前的成员
         Set<ZSetOperations.TypedTuple> set = bucket.rangeWithScores(0, 1);
         if (CollectionUtils.isEmpty(set)) {
             return null;

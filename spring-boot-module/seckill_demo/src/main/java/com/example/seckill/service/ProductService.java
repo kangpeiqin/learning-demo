@@ -33,7 +33,7 @@ public class ProductService extends ServiceImpl<ProductMapper, Product> {
     /**
      * 普通情况下：高并发下，这样减库存会引发一致性问题
      */
-    //    @Transactional(rollbackFor = Exception.class)
+//        @Transactional(rollbackFor = Exception.class)
     public void createOrder(int prodId) {
         // =======================情况1：==================================
         //库存检查，多个线程获取到的库存数据可能是一样的，这样就会导致后面减库存操作问题(减库存，更新库存，非原子性)
