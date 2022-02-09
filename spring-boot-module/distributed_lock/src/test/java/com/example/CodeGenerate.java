@@ -124,7 +124,7 @@ public class CodeGenerate {
     private TemplateConfig getTemplateConfig() {
         TemplateConfig templateConfig = new TemplateConfig()
                 .setXml(null).setService("").setController("")
-                .setServiceImpl("D:\\opensource\\learningDemo\\spring-boot-module\\distributed_lock\\src\\main\\resources\\templates\\myServiceImpl.java");
+                .setServiceImpl("templates/myServiceImpl.java");
         return templateConfig;
     }
 
