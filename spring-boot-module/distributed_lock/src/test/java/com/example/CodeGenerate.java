@@ -43,7 +43,8 @@ public class CodeGenerate {
     /**
      * 要生成的表名称
      */
-    private static final String tableNames = "category,actor";
+    private static final String tableNames = "actor,address,category,city,country," +
+            "customer,film,film_actor,film_category,film_text,inventory,language,payment,rental,staff,store";
 
     @Test
     public void generate() {
@@ -124,7 +125,7 @@ public class CodeGenerate {
     }
 
     /**
-     * 模板配置
+     * 模板配置：配置自定义模板
      */
     private TemplateConfig getTemplateConfig() {
         TemplateConfig templateConfig = new TemplateConfig()
