@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.example.distributedLock.DistributedLockApp;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 遇到问题多查看官方文档：https://www.mybatis-plus.com/guide/generator.html
+ * <p>
  * 代码生成器
  *
  * @author KPQ
@@ -40,7 +43,7 @@ public class CodeGenerate {
     /**
      * 要生成的表名称
      */
-    private static final String tableNames = "actor";
+    private static final String tableNames = "category,actor";
 
     @Test
     public void generate() {
@@ -54,8 +57,10 @@ public class CodeGenerate {
                 .setGlobalConfig(getGlobalConfig())
                 .setStrategy(getStrategyConfig())
                 .setPackageInfo(getPackageConfig())
-                .setTemplate(getTemplateConfig());
-//                .setCfg(getInjectionConfig());
+                .setTemplate(getTemplateConfig())
+                //设置模板引擎
+                .setTemplateEngine(new FreemarkerTemplateEngine())
+                .setCfg(getInjectionConfig());
         return generator;
     }
 
@@ -80,7 +85,7 @@ public class CodeGenerate {
         GlobalConfig globalConfig = new GlobalConfig()
                 .setOutputDir(outPutDir).setAuthor(author)
                 //是否打开输出目录
-                .setOpen(true).setSwagger2(false).setBaseResultMap(false)
+                .setOpen(false).setSwagger2(false).setBaseResultMap(false)
                 //是否覆盖已有的文件，设置service实现类的名称
                 .setFileOverride(false).setServiceImplName("%sService");
         return globalConfig;
@@ -124,7 +129,7 @@ public class CodeGenerate {
     private TemplateConfig getTemplateConfig() {
         TemplateConfig templateConfig = new TemplateConfig()
                 .setXml(null).setService("").setController("")
-                .setServiceImpl("templates/myServiceImpl.java");
+                .setServiceImpl("templates/customizeServiceImpl.java");
         return templateConfig;
     }
 
