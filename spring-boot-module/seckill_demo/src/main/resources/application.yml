@@ -18,6 +18,11 @@ spring:
         serverTimezone: GMT+8
         useUnicode: true
         characterEncoding: utf8
+ureport:
+  debug: false
+  disableFileProvider: false
+  disableHttpSessionReportCache: true
+  fileStoreDir: '/ureport'
 
 mybatis-plus:
   configuration:

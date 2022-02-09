@@ -30,9 +30,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--  spring-boot-data-redis依赖      -->
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,9 +60,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <!--   报表 ureport 2.0     -->
+        <dependency>
+            <groupId>com.pig4cloud.plugin</groupId>
+            <artifactId>ureport-spring-boot-starter</artifactId>
+            <version>0.0.1</version>
+        </dependency>
 
     </dependencies>
-
 
 
 </project>
