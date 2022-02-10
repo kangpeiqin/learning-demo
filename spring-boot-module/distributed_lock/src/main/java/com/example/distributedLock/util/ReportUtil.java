@@ -26,14 +26,12 @@ import java.util.Map;
 @Slf4j
 public class ReportUtil {
 
-
-    private static final ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
-
-
     private ReportUtil() {
     }
 
-    private static DataSource dataSource = SpringUtil.getBean(DataSource.class);
+    private static final ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
+
+    private static final DataSource dataSource = SpringUtil.getBean(DataSource.class);
 
     private static final String DEST_SUFFIX = ".jasper";
 
