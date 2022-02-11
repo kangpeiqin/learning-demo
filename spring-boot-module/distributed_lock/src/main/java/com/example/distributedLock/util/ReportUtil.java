@@ -3,6 +3,7 @@ package com.example.distributedLock.util;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperRunManager;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
@@ -13,7 +14,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.net.URI;
 import java.sql.Connection;
 import java.util.Map;
 
@@ -60,13 +60,13 @@ public class ReportUtil {
      */
     private static InputStream compile(String location, String fileName) {
         final String srcName = location + fileName + SOURCE_SUFFIX;
-        final String destName = location + fileName + DEST_SUFFIX;
+        Resource resource = resourceResolver.getResource(srcName);
         try {
-            URI destUri = resourceResolver.getResource(destName).getURI();
+            final String destName = resource.getURI().getPath().replace(SOURCE_SUFFIX, DEST_SUFFIX);
             //编译文件,生成 .jasper 文件
-            JasperCompileManager.compileReportToStream(resourceResolver.getResource(srcName).getInputStream(),
-                    new FileOutputStream(destUri.getPath()));
-            return new FileInputStream(new File(destUri));
+            JasperCompileManager.compileReportToStream(resource.getInputStream(),
+                    new FileOutputStream(destName));
+            return new FileInputStream(new File(destName));
         } catch (Exception e) {
             log.error("编译报表文件{}出错：{}", srcName, e.getMessage(), e);
             throw new RuntimeException("编译报表文件出错", e);

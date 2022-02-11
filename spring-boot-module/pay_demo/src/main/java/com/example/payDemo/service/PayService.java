@@ -13,6 +13,8 @@ package com.example.payDemo.service;
 public interface PayService<R, T> {
 
     /**
+     * - 商户系统订单创建
+     *
      * 创建订单，确保幂等性，防止重复创建订单
      *
      * @param param
@@ -22,8 +24,9 @@ public interface PayService<R, T> {
     R createOrder(T param) throws Exception;
 
     /**
+     * - 第三方支付系统订单创建
      * 订单预支付(创建预支付订单)
-     * 商户系统 请求  第三方支付接口
+     * 商户系统  请求  第三方支付系统订单创建接口
      *
      * @param param
      * @return 预支付

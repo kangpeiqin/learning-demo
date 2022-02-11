@@ -1,3 +1,4 @@
+-- 说明：https://www.cnblogs.com/chinas/p/6547366.html
 -- Sakila Sample Database Schema
 -- Version 1.2
 
