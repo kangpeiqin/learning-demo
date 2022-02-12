@@ -97,7 +97,7 @@ public class CodeGenerate {
      */
     private PackageConfig getPackageConfig() {
         //父级目录
-        final String parentPath = "com.example.distributedLock";
+        final String parentPath = "com.example.distributedlock";
         //设置service实现类所在的包名
         final String servicePackage = "service";
         PackageConfig packageConfig = new PackageConfig()
@@ -111,7 +111,7 @@ public class CodeGenerate {
      */
     private StrategyConfig getStrategyConfig() {
         //实体类要继承的超类
-        final String superEntityClass = "com.example.distributedLock.entity.base.BaseEntity";
+        final String superEntityClass = "com.example.distributedlock.entity.base.BaseEntity";
         //超类当中的字段
         final String superEntityColumns = "last_update";
         StrategyConfig strategy = new StrategyConfig()
