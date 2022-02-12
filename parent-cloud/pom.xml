@@ -12,7 +12,6 @@
         <groupId>com.example</groupId>
         <artifactId>demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <!--springboot依赖统一管理-->
     <dependencyManagement>

@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>learn-demo</artifactId>
     <name>demo</name>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -38,9 +38,8 @@
     <modules>
         <module>parent-boot</module>
         <module>parent-cloud</module>
-        <module>spring-boot-module</module>
-        <module>parent-cloud</module>
-        <module>spring-cloud</module>
+        <module>spring-boot-demo</module>
+        <module>spring-cloud-demo</module>
     </modules>
 
 </project>
