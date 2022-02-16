@@ -1,6 +1,6 @@
-package com.example.record.delayQueue.consumerQueue;
+package com.example.record.delayqueue.consumerqueue;
 
-import com.example.record.delayQueue.model.DelayJob;
+import com.example.record.delayqueue.model.DelayJob;
 
 /**
  * 消费者队列

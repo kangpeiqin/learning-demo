@@ -1,8 +1,8 @@
 package com.example.record.rest.web;
 
 import cn.hutool.json.JSONUtil;
-import com.example.record.delayQueue.model.DelayJob;
-import com.example.record.delayQueue.model.Job;
+import com.example.record.delayqueue.model.DelayJob;
+import com.example.record.delayqueue.model.Job;
 import com.example.record.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

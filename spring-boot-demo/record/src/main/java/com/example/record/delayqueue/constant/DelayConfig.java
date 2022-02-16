@@ -1,4 +1,4 @@
-package com.example.record.delayQueue.constant;
+package com.example.record.delayqueue.constant;
 
 /**
  * @author KPQ

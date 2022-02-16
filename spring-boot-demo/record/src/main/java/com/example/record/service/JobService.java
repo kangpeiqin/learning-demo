@@ -1,11 +1,11 @@
 package com.example.record.service;
 
-import com.example.record.delayQueue.constant.JobStatus;
-import com.example.record.delayQueue.container.DelayBucket;
-import com.example.record.delayQueue.container.JobPool;
-import com.example.record.delayQueue.consumerQueue.ReadyQueue;
-import com.example.record.delayQueue.model.DelayJob;
-import com.example.record.delayQueue.model.Job;
+import com.example.record.delayqueue.constant.JobStatus;
+import com.example.record.delayqueue.container.DelayBucket;
+import com.example.record.delayqueue.container.JobPool;
+import com.example.record.delayqueue.consumerqueue.ReadyQueue;
+import com.example.record.delayqueue.model.DelayJob;
+import com.example.record.delayqueue.model.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
-package com.example.record.delayQueue.model;
+package com.example.record.delayqueue.model;
 
-import com.example.record.delayQueue.constant.JobStatus;
+import com.example.record.delayqueue.constant.JobStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

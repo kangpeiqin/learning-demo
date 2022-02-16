@@ -1,4 +1,4 @@
-package com.example.record.vo;
+package com.example.record.domain.vo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

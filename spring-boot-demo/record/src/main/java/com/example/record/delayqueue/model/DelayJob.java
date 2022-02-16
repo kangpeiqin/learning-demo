@@ -1,4 +1,4 @@
-package com.example.record.delayQueue.model;
+package com.example.record.delayqueue.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

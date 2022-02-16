@@ -1,10 +1,9 @@
-package com.example.record.delayQueue.timer;
+package com.example.record.delayqueue.timer;
 
-import com.example.record.delayQueue.consumerQueue.ConsumerQueue;
-import com.example.record.delayQueue.container.DelayBucket;
-import com.example.record.delayQueue.container.JobPool;
-import com.example.record.delayQueue.consumerQueue.ReadyQueue;
-import com.example.record.delayQueue.handler.DelayJobHandler;
+import com.example.record.delayqueue.consumerqueue.ConsumerQueue;
+import com.example.record.delayqueue.container.DelayBucket;
+import com.example.record.delayqueue.container.JobPool;
+import com.example.record.delayqueue.handler.DelayJobHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

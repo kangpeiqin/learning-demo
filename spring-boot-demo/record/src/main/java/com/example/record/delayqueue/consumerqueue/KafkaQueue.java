@@ -1,8 +1,8 @@
-package com.example.record.delayQueue.consumerQueue;
+package com.example.record.delayqueue.consumerqueue;
 
-import com.example.record.delayQueue.container.JobPool;
-import com.example.record.delayQueue.model.DelayJob;
-import com.example.record.delayQueue.model.Job;
+import com.example.record.delayqueue.container.JobPool;
+import com.example.record.delayqueue.model.DelayJob;
+import com.example.record.delayqueue.model.Job;
 import com.example.record.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,21 +1,16 @@
-package com.example.record.delayQueue.handler;
+package com.example.record.delayqueue.handler;
 
 import cn.hutool.json.JSONUtil;
-import com.example.record.delayQueue.constant.DelayConfig;
-import com.example.record.delayQueue.constant.JobStatus;
-import com.example.record.delayQueue.consumerQueue.ConsumerQueue;
-import com.example.record.delayQueue.consumerQueue.KafkaQueue;
-import com.example.record.delayQueue.container.DelayBucket;
-import com.example.record.delayQueue.container.JobPool;
-import com.example.record.delayQueue.consumerQueue.ReadyQueue;
-import com.example.record.delayQueue.model.DelayJob;
-import com.example.record.delayQueue.model.Job;
+import com.example.record.delayqueue.constant.DelayConfig;
+import com.example.record.delayqueue.constant.JobStatus;
+import com.example.record.delayqueue.consumerqueue.ConsumerQueue;
+import com.example.record.delayqueue.container.DelayBucket;
+import com.example.record.delayqueue.container.JobPool;
+import com.example.record.delayqueue.model.DelayJob;
+import com.example.record.delayqueue.model.Job;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.Resource;
 
 /**
  * 任务处理

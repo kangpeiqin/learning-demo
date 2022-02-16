@@ -1,6 +1,7 @@
 package com.example.record.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
@@ -53,7 +54,7 @@ public class RedisConfig {
         return redisTemplate;
     }
 
-    private Jackson2JsonRedisSerializer buildSerializer() {
+    public static Jackson2JsonRedisSerializer buildSerializer() {
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper om = new ObjectMapper()
                 .registerModule(new ParameterNamesModule())
@@ -62,8 +63,9 @@ public class RedisConfig {
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         SimpleModule simpleModule = new SimpleModule();
         om.registerModule(simpleModule);
-        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,
-                ObjectMapper.DefaultTyping.NON_FINAL);
+//      JsonTypeInfo: Annotation used for configuring details of if and how type information is
+// * used with JSON serialization and deserialization
+        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
         jackson2JsonRedisSerializer.setObjectMapper(om);
         return jackson2JsonRedisSerializer;
     }

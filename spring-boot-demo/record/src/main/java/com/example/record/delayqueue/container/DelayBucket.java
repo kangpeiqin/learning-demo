@@ -1,7 +1,7 @@
-package com.example.record.delayQueue.container;
+package com.example.record.delayqueue.container;
 
 import cn.hutool.json.JSONUtil;
-import com.example.record.delayQueue.model.DelayJob;
+import com.example.record.delayqueue.model.DelayJob;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
