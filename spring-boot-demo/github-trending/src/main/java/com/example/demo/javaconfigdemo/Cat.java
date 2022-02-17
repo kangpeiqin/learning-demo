@@ -1,5 +1,6 @@
-package com.example.demo.javaConfigDemo;
+package com.example.demo.javaconfigdemo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,9 +12,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Data
 @Slf4j
-public class Dog {
+@AllArgsConstructor
+public class Cat {
     static {
-        log.info("========loading dog==========");
+        log.info("========loading cat==========");
     }
 
     private String name;

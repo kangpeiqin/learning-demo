@@ -1,10 +1,10 @@
-package com.example.demo.githubTrending.service;
+package com.example.demo.githubtrending.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.githubTrending.config.CacheConfig;
-import com.example.demo.githubTrending.constant.Constant;
-import com.example.demo.githubTrending.model.Contributor;
-import com.example.demo.githubTrending.model.GithubRepository;
+import com.example.demo.githubtrending.config.CacheConfig;
+import com.example.demo.githubtrending.constant.Constant;
+import com.example.demo.githubtrending.model.Contributor;
+import com.example.demo.githubtrending.model.GithubRepository;
 import com.example.demo.util.HttpUtil;
 import com.example.demo.util.Result;
 import org.jsoup.Jsoup;

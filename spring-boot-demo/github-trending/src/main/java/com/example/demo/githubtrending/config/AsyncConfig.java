@@ -1,4 +1,4 @@
-package com.example.demo.githubTrending.config;
+package com.example.demo.githubtrending.config;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.task.TaskExecutionProperties;

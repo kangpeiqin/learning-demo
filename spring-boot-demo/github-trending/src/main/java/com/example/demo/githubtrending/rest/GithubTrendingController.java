@@ -1,10 +1,10 @@
-package com.example.demo.githubTrending.rest;
+package com.example.demo.githubtrending.rest;
 
 import com.example.demo.aspect.Limiter;
-import com.example.demo.githubTrending.model.Developer;
-import com.example.demo.githubTrending.model.GithubRepository;
-import com.example.demo.githubTrending.service.GitHubTrendingService;
-import com.example.demo.githubTrending.service.HotDeveloperService;
+import com.example.demo.githubtrending.model.Developer;
+import com.example.demo.githubtrending.model.GithubRepository;
+import com.example.demo.githubtrending.service.GitHubTrendingService;
+import com.example.demo.githubtrending.service.HotDeveloperService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

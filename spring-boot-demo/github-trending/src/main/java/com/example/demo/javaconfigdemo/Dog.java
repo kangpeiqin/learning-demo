@@ -1,8 +1,7 @@
-package com.example.demo.javaConfigDemo;
+package com.example.demo.javaconfigdemo;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 /**
  * 演示使用Java config 引入bean的几种方式
@@ -12,11 +11,9 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Slf4j
-@Component
-@MyConditionAnnotation({"key"})
-public class Monkey {
+public class Dog {
     static {
-        log.info("========loading monkey==========");
+        log.info("========loading dog==========");
     }
 
     private String name;

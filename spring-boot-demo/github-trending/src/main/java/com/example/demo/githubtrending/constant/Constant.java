@@ -1,4 +1,4 @@
-package com.example.demo.githubTrending.constant;
+package com.example.demo.githubtrending.constant;
 
 /**
  * @author KPQ

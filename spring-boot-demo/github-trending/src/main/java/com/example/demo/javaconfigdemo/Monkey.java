@@ -1,8 +1,8 @@
-package com.example.demo.javaConfigDemo;
+package com.example.demo.javaconfigdemo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * 演示使用Java config 引入bean的几种方式
@@ -12,10 +12,11 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Data
 @Slf4j
-@AllArgsConstructor
-public class Cat {
+@Component
+@MyConditionAnnotation({"key"})
+public class Monkey {
     static {
-        log.info("========loading cat==========");
+        log.info("========loading monkey==========");
     }
 
     private String name;

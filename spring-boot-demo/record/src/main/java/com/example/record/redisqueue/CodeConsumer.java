@@ -45,8 +45,8 @@ public class CodeConsumer {
     }
 
     public void blockingConsume() {
-        //使用 bbRPop 防止 CPU 空转，Redis Brpop 命令移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
-        List data = redisTemplate.executePipelined((RedisCallback<Account>) connection -> (Account) connection.bRPop(BizConstant.TIME_OUT, BizConstant.CODE_QUEUE_KEY.getBytes()), new StringRedisSerializer());
+        //使用 bbRPop 防止 CPU 空转，Redis BRpop 命令移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
+        List<Object> data = redisTemplate.executePipelined((RedisCallback<Account>) connection -> (Account) connection.bRPop(BizConstant.TIME_OUT, BizConstant.CODE_QUEUE_KEY.getBytes()), new StringRedisSerializer());
 
         data.forEach(o -> {
             if (o == null) {

@@ -32,9 +32,6 @@ public class RedisQueueTest {
         //应用场景：如获取验证码，需向第三发服务发送短信，
         // 利用消息队列进行异步发送,详见：CodeConsumer 类
         redisOperation.leftPush(BizConstant.CODE_QUEUE_KEY, dto);
-        redisOperation.set("key", dto);
-        Account acc = redisOperation.get("key");
-        log.info("account:{}", acc.toString());
         return "success";
     }
 

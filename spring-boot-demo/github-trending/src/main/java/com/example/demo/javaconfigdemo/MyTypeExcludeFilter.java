@@ -1,4 +1,4 @@
-package com.example.demo.javaConfigDemo;
+package com.example.demo.javaconfigdemo;
 
 import org.springframework.boot.context.TypeExcludeFilter;
 import org.springframework.core.type.classreading.MetadataReader;

@@ -1,4 +1,4 @@
-package com.example.demo.javaConfigDemo;
+package com.example.demo.javaconfigdemo;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.RootBeanDefinition;

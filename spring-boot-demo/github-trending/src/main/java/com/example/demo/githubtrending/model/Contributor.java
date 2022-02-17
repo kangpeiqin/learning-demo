@@ -1,4 +1,4 @@
-package com.example.demo.githubTrending.model;
+package com.example.demo.githubtrending.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

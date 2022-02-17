@@ -1,9 +1,9 @@
-package com.example.demo.githubTrending.service;
+package com.example.demo.githubtrending.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.githubTrending.config.CacheConfig;
-import com.example.demo.githubTrending.constant.Constant;
-import com.example.demo.githubTrending.model.Developer;
+import com.example.demo.githubtrending.config.CacheConfig;
+import com.example.demo.githubtrending.constant.Constant;
+import com.example.demo.githubtrending.model.Developer;
 import com.example.demo.util.HttpUtil;
 import com.example.demo.util.Result;
 import com.google.common.collect.Lists;
@@ -12,14 +12,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.cache.Cache;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**

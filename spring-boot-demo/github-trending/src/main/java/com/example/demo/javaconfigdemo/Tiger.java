@@ -1,4 +1,4 @@
-package com.example.demo.javaConfigDemo;
+package com.example.demo.javaconfigdemo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.javaConfigDemo.EnableAnimal;
+import com.example.demo.javaconfigdemo.EnableAnimal;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;

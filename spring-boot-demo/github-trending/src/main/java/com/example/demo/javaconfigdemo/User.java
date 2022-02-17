@@ -1,4 +1,4 @@
-package com.example.demo.javaConfigDemo;
+package com.example.demo.javaconfigdemo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

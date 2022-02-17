@@ -1,6 +1,6 @@
-package com.example.demo.githubTrending.rest;
+package com.example.demo.githubtrending.rest;
 
-import com.example.demo.githubTrending.service.TestService;
+import com.example.demo.githubtrending.service.TestService;
 import com.example.demo.util.HttpUtil;
 import com.example.demo.util.Result;
 import lombok.extern.slf4j.Slf4j;
