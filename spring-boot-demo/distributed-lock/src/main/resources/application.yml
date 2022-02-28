@@ -11,15 +11,24 @@ spring:
 #    password: password
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/sakila?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: 123456
     hikari:
       data-source-properties:
+
         useSSL: false
         serverTimezone: GMT+8
         useUnicode: true
         characterEncoding: utf8
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  elasticsearch:
+    rest:
+      uris: localhost:9200
+
 
 mybatis-plus:
   configuration:

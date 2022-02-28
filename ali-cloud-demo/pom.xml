@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring-boot-demo</artifactId>
+    <artifactId>ali-cloud-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-demo</name>
+    <name>ali-cloud-demo</name>
     <packaging>pom</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>ali cloud demo</description>
 
     <parent>
         <groupId>com.example</groupId>
@@ -15,30 +15,19 @@
         <relativePath>../parent-boot</relativePath>
     </parent>
 
-    <modules>
-        <module>record</module>
-        <module>distributed-lock</module>
-        <module>github-trending</module>
-        <module>server-monitor</module>
-        <module>pay-demo</module>
-        <module>seckill-demo</module>
-        <module>dubbo-demo</module>
-        <module>spring-batch</module>
-    </modules>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-parent</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${junit-jupiter.version}</version>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${com-alibaba-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -46,7 +35,7 @@
     </dependencyManagement>
 
     <properties>
-        <junit-jupiter.version>5.6.2</junit-jupiter.version>
+        <com-alibaba-cloud.version>2.2.0.RELEASE</com-alibaba-cloud.version>
         <spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
     </properties>
 
