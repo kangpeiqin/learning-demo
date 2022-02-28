@@ -11,7 +11,7 @@
     <description>Parent for all Spring Boot 2 modules</description>
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>learn-demo</artifactId>
+        <artifactId>learning-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <!--springboot依赖统一管理-->
