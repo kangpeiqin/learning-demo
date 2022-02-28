@@ -11,9 +11,9 @@ spring:
 #    password: password
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/sakila?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 11love11
+    password: 123456
     hikari:
       data-source-properties:
         useSSL: false
@@ -32,3 +32,6 @@ mybatis-plus:
 
 report:
   location: classpath:templates/report/
+
+customize:
+  code: 2

@@ -2,7 +2,7 @@ server:
   port: 8096
 spring:
   application:
-    name: productService  # 项目名称
+    name: userservice  # 项目名称
   datasource: # h2数数据库配置
     url: jdbc:h2:mem:h2test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     platform: h2
