@@ -25,7 +25,7 @@ import java.util.Map;
 @Slf4j
 public class DefaultIdempotentInterceptor implements IdempotentInterceptor {
 
-    private final static Object LOCK_OBJECT = new Object();
+    private final  Object LOCK_OBJECT = new Object();
     private static Map<Class<? extends KeyGenerator>, KeyGenerator> keyGeneratorMap = new HashMap<>(64);
     private final RedissonClient redissonClient;
 

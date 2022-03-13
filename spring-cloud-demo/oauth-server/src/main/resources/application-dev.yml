@@ -54,6 +54,4 @@ mybatis-plus:
   type-aliases-package: com.example.record.entity # type-aliases扫描路径
   mapper-locations: classpath:mapper/*.xml  # mapper.xml 扫描路径
 
-logging:
-  level:
-    org.springframework.security: debug
+`

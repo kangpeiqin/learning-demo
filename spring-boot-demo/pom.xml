@@ -21,7 +21,7 @@
         <module>github-trending</module>
         <module>server-monitor</module>
         <module>pay-demo</module>
-        <module>seckill-demo</module>
+        <module>mall</module>
         <module>dubbo-demo</module>
         <module>spring-batch</module>
     </modules>
