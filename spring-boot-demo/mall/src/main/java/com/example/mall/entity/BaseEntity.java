@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
  * @since 1.0.0
  */
 @Data
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;

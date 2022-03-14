@@ -23,14 +23,20 @@
 
     <select id="getResourceWithRole" resultMap="resourceWithRole">
         SELECT
-            a.*,
+            a.id,
+            a.url,
+            a.path,
+            a.name,
+            a.icon,
+            a.parent_id,
+            a.enabled,
             c.id AS role_id,
             c.code,
             c.name
         FROM
             resource a
             JOIN role_resource b ON a.id = b.resource_id
-            JOIN role c ON c.id = b.role_id;
+            JOIN role c ON c.id = b.role_id
     </select>
 
 </mapper>

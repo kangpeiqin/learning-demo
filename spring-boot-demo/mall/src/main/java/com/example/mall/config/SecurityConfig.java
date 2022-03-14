@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -76,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     } else if (exception instanceof DisabledException) {
                         result.setMsg("账户被禁用，请联系管理员!");
                     } else if (exception instanceof BadCredentialsException) {
-                        result.setMsg("用户名或者密码");
+                        result.setMsg("用户名或者密码错误");
                     }
                     out.write(ObjectMapperUtil.writeValueAsString(result));
                     out.flush();
@@ -139,11 +140,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //没有认证时，在这里进行处理
                 .authenticationEntryPoint((req, resp, authException) -> {
                             resp.setContentType(APPLICATION_JSON_UTF8);
-                            resp.setStatus(401);
+                            resp.setStatus(HttpStatus.UNAUTHORIZED.value());
                             PrintWriter out = resp.getWriter();
-                            Result res = Result.error("访问失败!");
+                            Result res = Result.unauthorized("访问失败");
                             if (authException instanceof InsufficientAuthenticationException) {
-                                res.setMsg("请求失败，请联系管理员!");
+                                res.setMsg("无访问权限");
                             }
                             out.write(ObjectMapperUtil.writeValueAsString(res));
                             out.flush();
@@ -153,7 +154,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterAt(new ConcurrentSessionFilter(sessionRegistry(), event -> {
             HttpServletResponse resp = event.getResponse();
             resp.setContentType(APPLICATION_JSON_UTF8);
-            resp.setStatus(401);
+            resp.setStatus(HttpStatus.UNAUTHORIZED.value());
             PrintWriter out = resp.getWriter();
             out.write(ObjectMapperUtil.writeValueAsString(Result.error("您已在另一台设备登录，本次登录已下线!")));
             out.flush();

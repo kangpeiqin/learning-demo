@@ -32,4 +32,9 @@ public class Result<T> {
         return new Result(HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 msg, null);
     }
+
+    public static <T> Result<T> unauthorized(String msg) {
+        return new Result(HttpStatus.UNAUTHORIZED.value(),
+                msg, null);
+    }
 }

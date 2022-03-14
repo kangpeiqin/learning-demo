@@ -38,7 +38,7 @@ CREATE TABLE `resource` (
   `component` varchar(64) DEFAULT NULL,
   `name` varchar(64) DEFAULT NULL,
   `icon` varchar(64) DEFAULT NULL COMMENT '资源图标',
-  `parent_id` int(11) DEFAULT NULL COMMENT '父级id，0 表示顶级',
+  `parent_id` int(11) DEFAULT NULL COMMENT '父级id，NULL 表示顶级',
   `enabled` tinyint(1) DEFAULT '1' COMMENT '账户是否可用',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',

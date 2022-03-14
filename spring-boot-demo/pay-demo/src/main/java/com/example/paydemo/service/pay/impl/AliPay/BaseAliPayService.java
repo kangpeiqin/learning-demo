@@ -7,6 +7,8 @@ import com.example.paydemo.domain.vo.PayResultVO;
 import com.example.paydemo.util.OrderNumUtil;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+
 /**
  * @author KPQ
  * @date 2021/12/16
@@ -30,6 +32,7 @@ public abstract class BaseAliPayService {
 
     /**
      * 支付宝退款
+     *
      * @param param
      * @return
      * @throws Exception
@@ -39,4 +42,66 @@ public abstract class BaseAliPayService {
         return false;
     }
 
+
+}
+
+class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * char c = s.charAt(i);
+     * if (c >= '0' && c <= '9') {
+     * for (int j = i + 1; j < s.length(); j++) {
+     * char cj = s.charAt(j);
+     * if (cj < '0' || cj > '9') {
+     * break;
+     * } else {
+     * <p>
+     * }
+     * }
+     * list.add((int) c);
+     * }
+     *
+     * @param s string字符串
+     * @return int整型ArrayList
+     */
+    public static ArrayList<Integer> extraNum(String s) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (s == null || s.length() == 0) {
+            return list;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c >= '0' && c <= '9') {
+                sb.append(c);
+            } else {
+                sb.append(",");
+            }
+        }
+        String[] arr = sb.toString().split(",");
+
+        for (String str : arr) {
+            if (!"".equals(str)) {
+                list.add(Integer.valueOf(str));
+            }
+        }
+        return list;
+    }
+
+//    public int validNum(int N) {
+//
+//
+//        // write code here
+//    }
+//
+//    private String getAll(int n) {
+//        List<String> list = new ArrayList<>();
+//        for (int i = 0; i < n; i++) {
+//
+//        }
+//    }
+
+    public static void main(String[] args) {
+        System.out.println(extraNum("c012u14i8"));
+    }
 }
