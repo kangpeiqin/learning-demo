@@ -2,6 +2,7 @@ package com.example.mall.service;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.mall.entity.Resource;
 import com.example.mall.entity.Role;
 import com.example.mall.entity.SysUser;
 import com.example.mall.mapper.SysUserMapper;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +25,10 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> implemen
 
     private final RoleService roleService;
 
+    private final ResourceService resourceService;
+
+    private static final Integer PARENT_NODE = 0;
+
     /**
      * 根据用户名查找用户
      */
@@ -34,6 +40,27 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> implemen
         }
         List<Role> roles = roleService.getBaseMapper().getUserRolesById(user.getId());
         user.setRoles(roles);
+        List<Resource> resources = getResourceByUserId(user.getId());
+        user.setResourceList(getResourceTree(resources, PARENT_NODE));
         return user;
     }
+
+    private List<Resource> getResourceByUserId(Integer userId) {
+        List<Resource> resourceList = resourceService.getBaseMapper()
+                .getResourceByUserId(userId);
+        return resourceList;
+    }
+
+
+    private List<Resource> getResourceTree(List<Resource> resources, Integer parentId) {
+        List<Resource> resourceList = new ArrayList<>();
+        for (Resource resource : resources) {
+            if (resource.getParentId().equals(parentId)) {
+                resource.setChildren(getResourceTree(resources, resource.getId()));
+                resourceList.add(resource);
+            }
+        }
+        return resourceList;
+    }
+
 }

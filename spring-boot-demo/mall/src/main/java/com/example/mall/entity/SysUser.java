@@ -57,6 +57,9 @@ public class SysUser extends BaseEntity implements UserDetails {
     @ApiModelProperty("用户角色")
     private List<Role> roles;
 
+    @ApiModelProperty("资源列表")
+    @TableField(exist = false)
+    private List<Resource> resourceList;
 
     @Override
     public String getPassword() {

@@ -1,5 +1,6 @@
 package com.example.mall.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -43,6 +44,7 @@ public class Resource extends BaseEntity {
 
     private List<Resource> children;
 
+    @JsonIgnore
     private List<Role> roles;
 
 }

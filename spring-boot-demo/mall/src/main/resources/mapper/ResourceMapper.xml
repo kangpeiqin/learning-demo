@@ -9,7 +9,7 @@
         <result column="component" property="component" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="icon" property="icon" jdbcType="VARCHAR"/>
-        <result column="parentId" property="parentId" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
         <result column="enabled" property="enabled" jdbcType="BIT"/>
     </resultMap>
 
@@ -37,6 +37,17 @@
             resource a
             JOIN role_resource b ON a.id = b.resource_id
             JOIN role c ON c.id = b.role_id
+    </select>
+
+    <select id="getResourceByUserId" resultMap="BaseResultMap">
+        SELECT
+            a.*
+        FROM
+            resource a
+            JOIN role_resource b ON a.id = b.resource_id
+            JOIN user_role c ON c.role_id = b.role_id
+        WHERE
+            c.id = #{userId}
     </select>
 
 </mapper>
