@@ -43,7 +43,6 @@ CREATE TABLE `resource` (
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `parent_id` (`parent_id`),
   CONSTRAINT `rs_fk` FOREIGN KEY (`parent_id`) REFERENCES `resource` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT '系统资源表';
 
