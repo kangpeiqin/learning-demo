@@ -1,6 +1,6 @@
-package com.example.mall.config;
+package com.example.mall.security;
 
-import com.example.mall.admin.filter.LoginFilter;
+import com.example.mall.security.filter.LoginFilter;
 import com.example.mall.entity.SysUser;
 import com.example.mall.service.SysUserService;
 import com.example.mall.util.ObjectMapperUtil;

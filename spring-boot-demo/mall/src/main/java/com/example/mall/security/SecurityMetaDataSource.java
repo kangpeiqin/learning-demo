@@ -1,4 +1,4 @@
-package com.example.mall.config;
+package com.example.mall.security;
 
 import com.example.mall.entity.Resource;
 import com.example.mall.entity.Role;

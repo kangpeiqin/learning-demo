@@ -1,6 +1,10 @@
 package com.example.record.rest.web;
 
+import com.example.record.rabbitmq.RabbitDirectConfig;
+import com.example.record.rabbitmq.RabbitFanoutConfig;
+import com.example.record.rabbitmq.RabbitTopicConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
@@ -22,6 +26,10 @@ public class SendMessageController {
     @Resource
     private KafkaTemplate<String, String> kafkaTemplate;
 
+    @Resource
+    private RabbitTemplate rabbitTemplate;
+
+
     @GetMapping("send/{message}")
     public void send(@PathVariable String message) {
         ListenableFuture<SendResult<String, String>> future = this.kafkaTemplate.send("test", message);
@@ -38,5 +46,27 @@ public class SendMessageController {
         });
     }
 
+    @GetMapping("sendMsg")
+    public String sendMsg() {
+        //路由键：routingKey，发送内容。默认情况下：当一条消息到达 DirectExchange 时会被转发到与该条消息 routing key 相同的 Queue 上
+        rabbitTemplate.convertAndSend(RabbitDirectConfig.HELLO_WORLD_QUEUE_NAME, "hello");
+        return "success";
+    }
+
+    @GetMapping("fanoutTest")
+    public String fanoutTest() {
+        rabbitTemplate.convertAndSend(RabbitFanoutConfig.FANOUT_NAME,
+                null, "hello fanout!");
+        return "success";
+    }
+
+    @GetMapping("topicTest")
+    public String topicTest() {
+        rabbitTemplate.convertAndSend(RabbitTopicConfig.TOPIC_NAME,
+                "dev.queue", "test dev");
+        rabbitTemplate.convertAndSend(RabbitTopicConfig.TOPIC_NAME,
+                "prod.queue", "test prod");
+        return "success";
+    }
 
 }

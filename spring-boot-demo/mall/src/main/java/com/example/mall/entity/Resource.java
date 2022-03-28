@@ -21,8 +21,6 @@ import java.util.List;
 @ApiModel(value = "Resource对象", description = "系统资源表")
 public class Resource extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
-
     @ApiModelProperty(value = "后端链接")
     private String url;
 

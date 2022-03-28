@@ -15,7 +15,7 @@ spring:
       batch-size: 65536
       buffer-memory: 524288
   rabbitmq:
-    host: 192.168.0.107
+    host: 127.0.0.1
     port: 5672
     username: guest
     password: guest
@@ -43,7 +43,7 @@ spring:
     password: ENC(9vGB8PE69xFhl4haWbJQUsrqJg/tHyfDGazgKqfBPVQ=)
     default-encoding: utf-8
 server:
-  port: 8081
+  port: 8088
   servlet:
     session:
       cookie:

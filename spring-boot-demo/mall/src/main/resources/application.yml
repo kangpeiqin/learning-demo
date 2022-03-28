@@ -10,15 +10,20 @@ spring:
     cache-names: resource_cache
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/rbac?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 11love11
+    password: 123456
     hikari:
       data-source-properties:
         useSSL: false
         serverTimezone: GMT+8
         useUnicode: true
         characterEncoding: utf8
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 ureport:
   debug: false

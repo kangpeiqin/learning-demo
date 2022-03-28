@@ -54,5 +54,4 @@ public class CacheConfig extends CachingConfigurerSupport {
         template.afterPropertiesSet();
         return template;
     }
-
 }

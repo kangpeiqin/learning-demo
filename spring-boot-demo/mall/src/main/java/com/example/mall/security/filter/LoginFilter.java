@@ -1,4 +1,4 @@
-package com.example.mall.admin.filter;
+package com.example.mall.security.filter;
 
 import com.example.mall.entity.SysUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
