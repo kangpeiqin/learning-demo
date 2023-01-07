@@ -63,8 +63,6 @@ public class RedisConfig {
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         SimpleModule simpleModule = new SimpleModule();
         om.registerModule(simpleModule);
-//      JsonTypeInfo: Annotation used for configuring details of if and how type information is
-// * used with JSON serialization and deserialization
         om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
         jackson2JsonRedisSerializer.setObjectMapper(om);
         return jackson2JsonRedisSerializer;

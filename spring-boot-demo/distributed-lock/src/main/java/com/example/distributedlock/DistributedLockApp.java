@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @SpringBootApplication
-@MapperScan("com.example.distributedLock.mapper")
+@MapperScan("com.example.distributedlock.mapper")
 @EnableElasticsearchRepositories
 public class DistributedLockApp {
 

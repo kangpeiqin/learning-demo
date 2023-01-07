@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author KPQ
  * @date 2021/11/4
  */
-@ServerEndpoint("/msgEndpoint")
+@ServerEndpoint(value = "/msgEndpoint", subprotocols = {"protocol"})
 @Component
 @Slf4j
 public class MessagePushEndPoint extends BaseAbstractEndPoint {
