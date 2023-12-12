@@ -1,8 +1,6 @@
 package com.example;
 
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.encryption.pbe.config.EnvironmentPBEConfig;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
@@ -19,8 +17,8 @@ public class PayDemoAppTest {
 
     @Test
     public void testEncrypt() {
-        String plainText = "text";
-        System.out.println(encryptWithSHA512(plainText, "pass"));
+        String plainText = "encrypt text";
+        System.out.println(encryptWithSHA512(plainText, "encrypt_password"));
     }
 
     public static String encryptWithSHA512(String plainText, String factor) {
@@ -44,8 +42,8 @@ public class PayDemoAppTest {
 
     @Test
     public void testDe() throws Exception {
-        String encryptedText = "3zMq5ynSZqOn7IX9qB73nBKmYhMuDYZdFA1qBxmRV2Do+E4eC6noPUmGUvY9TY7y";
-        String plainText = decryptWithSHA512(encryptedText, "Wwzl@sinceTech2025");
+        String encryptedText = "encryptedText";
+        String plainText = decryptWithSHA512(encryptedText, "encrypt_password");
         System.out.println(plainText);
     }
 
@@ -72,10 +70,10 @@ public class PayDemoAppTest {
     public void encrypt() {
         BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
         //加密所需的密钥
-        textEncryptor.setPassword("21242");
+        textEncryptor.setPassword("pass");
         //要加密的数据（数据库的用户名或密码）
         String username = textEncryptor.encrypt("root");
-        String password = textEncryptor.encrypt("123445");
+        String password = textEncryptor.encrypt("pass");
         System.out.println(username);
         System.out.println("====================");
         System.out.println(password);
