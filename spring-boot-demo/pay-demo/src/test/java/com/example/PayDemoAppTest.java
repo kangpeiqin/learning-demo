@@ -1,7 +1,7 @@
 package com.example;
 
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.encryption.pbe.config.EnvironmentPBEConfig;
+import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
+import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.junit.Test;
 
@@ -13,39 +13,67 @@ import org.junit.Test;
  */
 public class PayDemoAppTest {
 
+    private static final String PBEWITHHMACSHA512ANDAES_256 = "PBEWITHHMACSHA512ANDAES_256";
+
     @Test
     public void testEncrypt() {
-        StandardPBEStringEncryptor standardPBEStringEncryptor = new StandardPBEStringEncryptor();
-        EnvironmentPBEConfig config = new EnvironmentPBEConfig();
-        config.setAlgorithm("PBEWithMD5AndDES");          // 加密的算法，这个算法是默认的
-        config.setPassword("keepHungry");                        // 加密的密钥
-        standardPBEStringEncryptor.setConfig(config);
-        String pass = "123456";
-        String encPass = standardPBEStringEncryptor.encrypt(pass);
-        System.out.println(encPass);
+        String plainText = "encrypt text";
+        System.out.println(encryptWithSHA512(plainText, "encrypt_password"));
+    }
+
+    public static String encryptWithSHA512(String plainText, String factor) {
+        // 1. 创建加解密工具实例
+        PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+        // 2. 加解密配置
+        SimpleStringPBEConfig config = new SimpleStringPBEConfig();
+        config.setPassword(factor);
+        config.setAlgorithm(PBEWITHHMACSHA512ANDAES_256);
+        // 为减少配置文件的书写，以下都是 Jasyp 3.x 版本，配置文件默认配置
+        config.setKeyObtentionIterations("1000");
+        config.setPoolSize("1");
+        config.setProviderName("SunJCE");
+        config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
+        config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
+        config.setStringOutputType("base64");
+        encryptor.setConfig(config);
+        // 3. 加密
+        return encryptor.encrypt(plainText);
     }
 
     @Test
     public void testDe() throws Exception {
-        StandardPBEStringEncryptor standardPBEStringEncryptor = new StandardPBEStringEncryptor();
-        EnvironmentPBEConfig config = new EnvironmentPBEConfig();
-
-        config.setAlgorithm("PBEWithMD5AndDES");
-        config.setPassword("12345");
-        standardPBEStringEncryptor.setConfig(config);
-        String encryptedText = "gTC/CPKmMyrz3dl6B7iriENVDnwhjRZ3";
-        String plainText = standardPBEStringEncryptor.decrypt(encryptedText);
+        String encryptedText = "encryptedText";
+        String plainText = decryptWithSHA512(encryptedText, "encrypt_password");
         System.out.println(plainText);
+    }
+
+    public static String decryptWithSHA512(String encryptedText, String factor) {
+        // 1. 创建加解密工具实例
+        PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+        // 2. 加解密配置
+        SimpleStringPBEConfig config = new SimpleStringPBEConfig();
+        config.setPassword(factor);
+        config.setAlgorithm(PBEWITHHMACSHA512ANDAES_256);
+        // 为减少配置文件的书写，以下都是 Jasyp 3.x 版本，配置文件默认配置
+        config.setKeyObtentionIterations("1000");
+        config.setPoolSize("1");
+        config.setProviderName("SunJCE");
+        config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
+        config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
+        config.setStringOutputType("base64");
+        encryptor.setConfig(config);
+        // 3. 解密
+        return encryptor.decrypt(encryptedText);
     }
 
     @Test
     public void encrypt() {
         BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
         //加密所需的密钥
-        textEncryptor.setPassword("21242");
+        textEncryptor.setPassword("pass");
         //要加密的数据（数据库的用户名或密码）
         String username = textEncryptor.encrypt("root");
-        String password = textEncryptor.encrypt("123445");
+        String password = textEncryptor.encrypt("pass");
         System.out.println(username);
         System.out.println("====================");
         System.out.println(password);
