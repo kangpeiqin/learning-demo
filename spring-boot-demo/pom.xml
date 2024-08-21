@@ -24,6 +24,7 @@
         <module>mall</module>
         <module>dubbo-demo</module>
         <module>spring-batch</module>
+        <module>rabbit_demo</module>
     </modules>
 
     <dependencyManagement>

@@ -1,0 +1,19 @@
+server:
+  port: 8081
+spring:
+  rabbitmq:
+    host: 192.168.150.70
+    port: 5672
+    virtual-host: /mall
+    username: admin
+    password: admin
+    publisher-confirm-type: correlated #消息到达交换器时确认回调
+#    publisher-returns: true  #消息到达队列时是否要回调
+    listener:
+      simple:
+        acknowledge-mode: auto
+        retry:
+          enabled: true  #监听重试是否可用
+          max-attempts: 3   #最大重试次数 默认为3
+          initial-interval: 10000  # 传递消息的时间间隔 默认1s
+        default-requeue-rejected: true #重试超限制后丢器
